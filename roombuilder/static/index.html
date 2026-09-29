@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Design wmdcfg Golden World rooms for the EasyMesh optimizer lab: floor plans, walls, agents, clients and movement.">
+<title>EasyMesh room builder</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f3efe6'/%3E%3Cpath d='M16 5 26 22H6z' fill='%23c0392b'/%3E%3Ccircle cx='24' cy='25' r='3.5' fill='%237a4b9c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/builder.css">
+</head>
+<body>
+<aside id="sidebar" aria-label="Room builder controls">
+  <header class="brand">
+    <h1>EasyMesh room builder</h1>
+    <div class="sub">wmdcfg Golden World designer ·
+      <a class="manual-link" id="openManual" href="manual.html" target="_blank" rel="noopener" aria-haspopup="dialog">Manual &amp; Help</a></div>
+  </header>
+
+  <section class="card design-card" id="designCard" aria-label="Current design">
+    <div class="design-title-row">
+      <input id="designTitle" type="text" aria-label="Design title" data-tip="The design's human title. Saving creates a file id from it; the exported world ID is shown below." spellcheck="false">
+      <span id="saveState" class="save-state" role="status" aria-live="polite"></span>
+    </div>
+    <div class="design-meta" id="designMeta">Loading…</div>
+    <div class="button-grid">
+      <button id="btnNew" data-tip="Start a new room from a size and a template (Ctrl+Alt+N).">New…</button>
+      <button id="btnLibrary" data-tip="Browse 50 example rooms, including every reference lab room with golden-hash parity.">Library…</button>
+      <button id="btnOpen" data-tip="Open a saved design, restore an earlier revision, duplicate or delete (Ctrl+O).">Open…</button>
+      <button id="btnSave" data-tip="Save to the design store on this server (Ctrl+S). Every save keeps the previous revision.">Save</button>
+      <button id="btnSaveAs" data-tip="Save under a new title and id (Ctrl+Shift+S).">Save as…</button>
+      <button id="btnImport" data-tip="Open a configurator layout, mobility or compiled .world.json, or a builder design. Drop files anywhere, too.">Import…</button>
+    </div>
+    <button id="btnExport" class="primary wide" data-tip="Configurator JSON, golden world, .wmd scenarios, a lab-ready bundle, images, SVG/DXF plans and 3D models.">Export…</button>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Builder sections">
+    <button role="tab" data-tab="room" aria-selected="true" data-tip="Room size, propagation model, lab profile and view options.">Room</button>
+    <button role="tab" data-tab="walls" data-tip="Wall materials, the wall list and door gaps.">Walls</button>
+    <button role="tab" data-tab="devices" data-tip="Gateway, extenders and clients; optimal extender placement.">Devices</button>
+    <button role="tab" data-tab="motion" data-tip="Script length, tick, paths, presence and checkpoints.">Motion</button>
+    <button role="tab" data-tab="scenario" data-tip="Band steering, expectations, traffic experiment and the room guide text.">Scenario</button>
+    <button role="tab" data-tab="check" data-tip="Live validation, the verification suite and coverage statistics.">Check <span id="checkCount" class="count"></span></button>
+  </nav>
+  <div class="tab-panels">
+    <section class="tab-panel" id="tab-room" role="tabpanel"></section>
+    <section class="tab-panel" id="tab-walls" role="tabpanel" hidden></section>
+    <section class="tab-panel" id="tab-devices" role="tabpanel" hidden></section>
+    <section class="tab-panel" id="tab-motion" role="tabpanel" hidden></section>
+    <section class="tab-panel" id="tab-scenario" role="tabpanel" hidden></section>
+    <section class="tab-panel" id="tab-check" role="tabpanel" hidden></section>
+  </div>
+
+  <hr>
+  <div class="legend" id="legend">
+    <span class="dot" style="background:var(--gateway)"></span>gateway
+    <span class="dot" style="background:var(--extender);margin-left:10px"></span>extender
+    <span class="dot" style="background:var(--mobile);margin-left:10px"></span>mobile station
+    <span class="dot" style="background:var(--static);margin-left:10px"></span>static station<br>
+    Modeled links: red weak → yellow fair → green strong (viewer signal meter). Absent roles are grey.<br>
+    <span class="line-key dashed"></span>scenario-best link
+    <span class="line-key backhaul"></span>Agent-1 backhaul
+    <span class="line-key backhaul extender"></span>extender backhaul
+    <span class="line-key path"></span>planned path<br>
+    Labels: <b>Agent-1</b> gateway, <b>Extender-1</b> extender_1, <b>m01</b> sta_mobile_01, <b>s01</b> sta_static_01.
+  </div>
+</aside>
+<div id="paneDivider" class="pane-divider" role="separator" aria-orientation="vertical" aria-label="Resize panels" tabindex="0" title="Drag to resize panels. Arrow keys adjust; double-click resets."></div>
+<main id="stage">
+  <div id="sceneToolbar">
+    <div id="roomName">Room: loading…</div>
+    <div class="toolbar-row">
+      <span class="seg tools" id="toolSeg" role="group" aria-label="Tools">
+        <button data-tool="select" aria-pressed="true" data-tip="Select &amp; move (V). Drag devices, walls, wall ends and waypoints. Drag empty space to orbit, Shift-drag to pan.">Select</button>
+        <button data-tool="wall" data-tip="Draw walls (W). Click to start, click to end each segment; the chain continues. Shift snaps to 15°, type a length then Enter for an exact wall, Esc or right-click finishes.">Wall</button>
+        <button data-tool="room" data-tip="Room box (R). Drag a rectangle to create four walls of the active material.">Box</button>
+        <button data-tool="door" data-tip="Door gap (D). Click a wall to cut a gap of the door width; RF passes a gap without wall loss.">Door</button>
+        <button data-tool="ap" data-tip="Add an agent (E). The first becomes the gateway (Agent-1), then extender_1, extender_2…">Agent</button>
+        <button data-tool="client" data-tip="Add a static client (C). Lab roles are used in order: sta_static_01…10, then the sta_pool_ range.">Client</button>
+        <button data-tool="path" data-tip="Path (P). Click a client, then click the floor to add waypoints timed by the walk speed. Click empty floor first to create a new mobile client. Enter or double-click finishes.">Path</button>
+        <button data-tool="measure" data-tip="Measure (M). Click two points: distance, crossed walls and the predicted SNR per band between them.">Measure</button>
+      </span>
+      <span class="seg" id="viewSeg" role="group" aria-label="Camera">
+        <button data-view="orbit" aria-pressed="true" data-tip="3D orbit camera, the viewer's default angle (3).">3D</button>
+        <button data-view="plan" data-tip="Exact top-down plan with an orthographic camera for precise drawing (T).">Plan</button>
+        <button data-view="walk" data-tip="Walk through the room at eye height: drag to look, W/A/S/D or arrows to move, wheel to step (G).">Walk</button>
+      </span>
+      <button id="btnFit" data-tip="Fit the room in view (F).">Fit</button>
+      <span class="seg" role="group" aria-label="History">
+        <button id="btnUndo" data-tip="Undo (Ctrl+Z)." aria-label="Undo">↶</button>
+        <button id="btnRedo" data-tip="Redo (Ctrl+Shift+Z / Ctrl+Y)." aria-label="Redo">↷</button>
+      </span>
+      <button id="btnHeat" aria-pressed="false" data-tip="Coverage heatmap: best AP→point SNR on the selected band, in the viewer's red/yellow/green signal bands (H).">Heatmap</button>
+      <button id="btnShot" data-tip="Save a PNG screenshot of this view. More sizes and formats in Export.">Screenshot</button>
+      <button id="btnFullscreen" aria-pressed="false" data-tip="Full screen room view.">Full screen</button>
+    </div>
+  </div>
+  <div id="toolOptions" class="tool-options" aria-live="polite"></div>
+  <div id="propsHud" class="hud" role="region" aria-label="Selection properties" hidden></div>
+  <div id="measureHud" class="hud measure" hidden></div>
+  <div id="checkBadge" class="check-badge" role="button" tabindex="0" hidden></div>
+  <div id="hint"></div>
+  <div id="cursorReadout" class="cursor-readout" aria-hidden="true"></div>
+  <section id="timeline" aria-label="Timeline"></section>
+  <div id="contextMenu" class="role-menu" role="menu" hidden></div>
+  <div id="dropZone" hidden><div>Drop configurator JSON, a .world.json or a design to import</div></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="err" role="alert"></div>
+  <div id="engineStatus" role="status" aria-live="polite" hidden></div>
+</main>
+<div id="tooltip" role="tooltip" hidden></div>
+<div id="dialogs"></div>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/GLTFExporter.js"></script>
+<script src="vendor/OBJExporter.js"></script>
+<script src="vendor/STLExporter.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

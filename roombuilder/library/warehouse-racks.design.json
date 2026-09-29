@@ -1,0 +1,463 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "warehouse-racks",
+  "title": "Warehouse with metal racks",
+  "description": "Six 40 m rows of metal racking (30 dB) make RF corridors. Forklift terminals drive the aisles; hand scanners stay at the packing benches.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "warehouse-racks",
+    "tags": [
+      "industrial",
+      "metal",
+      "open-hall",
+      "warehouse"
+    ],
+    "space": {
+      "width_m": 60,
+      "height_m": 40
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.0,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "rack1",
+        "start": [
+          12.0,
+          6.0
+        ],
+        "end": [
+          12.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "rack2",
+        "start": [
+          19.0,
+          6.0
+        ],
+        "end": [
+          19.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "rack3",
+        "start": [
+          26.0,
+          6.0
+        ],
+        "end": [
+          26.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "rack4",
+        "start": [
+          33.0,
+          6.0
+        ],
+        "end": [
+          33.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "rack5",
+        "start": [
+          40.0,
+          6.0
+        ],
+        "end": [
+          40.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "rack6",
+        "start": [
+          47.0,
+          6.0
+        ],
+        "end": [
+          47.0,
+          34.0
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "office-s",
+        "start": [
+          0.0,
+          30.0
+        ],
+        "end": [
+          8.0,
+          30.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "office-e-a",
+        "start": [
+          8.0,
+          30.0
+        ],
+        "end": [
+          8.0,
+          32.4
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "office-e-b",
+        "start": [
+          8.0,
+          33.6
+        ],
+        "end": [
+          8.0,
+          40.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "office-n",
+        "start": [
+          0.0,
+          40.0
+        ],
+        "end": [
+          8.0,
+          40.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "office-w",
+        "start": [
+          0.0,
+          30.0
+        ],
+        "end": [
+          0.0,
+          40.0
+        ],
+        "loss_db": 8
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          35
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          12.0,
+          34.35
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          40.0,
+          39.0
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          58.2,
+          26.05
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          25.95,
+          34.8
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          5,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          8,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          57,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          57,
+          38
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          30,
+          38
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          30,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          2,
+          25
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          6,
+          33
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          3,
+          38
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "forklift-shift",
+    "tags": [
+      "fast",
+      "mobile-4"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              15.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 13600,
+            "position": [
+              15.5,
+              37
+            ]
+          },
+          {
+            "time_ms": 27200,
+            "position": [
+              15.5,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              22.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 5000,
+            "position": [
+              22.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 18600,
+            "position": [
+              22.5,
+              37
+            ]
+          },
+          {
+            "time_ms": 32200,
+            "position": [
+              22.5,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_03",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              36.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              36.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 23600,
+            "position": [
+              36.5,
+              37
+            ]
+          },
+          {
+            "time_ms": 37200,
+            "position": [
+              36.5,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_04",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              50.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 15000,
+            "position": [
+              50.5,
+              3
+            ]
+          },
+          {
+            "time_ms": 28600,
+            "position": [
+              50.5,
+              37
+            ]
+          },
+          {
+            "time_ms": 42200,
+            "position": [
+              50.5,
+              3
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "metal",
+      "metal",
+      "metal",
+      "metal",
+      "metal",
+      "metal",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Warehouse with metal racks",
+      "rf": "Free-space exponent 2.0, but every rack row costs 30 dB: an AP effectively serves one or two aisles. Open ends of the aisles let signal around the racks.",
+      "optimizer": "Forklifts move at 2.5 m/s along aisles; expect handovers at the aisle ends where the next AP becomes visible.",
+      "watch": "Coverage heatmap on 5 GHz: shadows behind each rack row.",
+      "limits": "Racks are single walls; real racking loss depends on stock."
+    }
+  },
+  "library": {
+    "category": "large",
+    "order": 1,
+    "highlights": [
+      "11 walls",
+      "4 moving"
+    ]
+  }
+}

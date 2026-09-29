@@ -1,0 +1,234 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "rf-asymmetric-ack",
+  "title": "RF · Asymmetric ACK / Counter Guard",
+  "description": "Fixed load-comparison geometry with a −45 dB configured transmit-gain offset on sta_static_03 across all three bands. AP→client SNR stays strong near extender_1 while client→AP SNR is weaker. Bounded 30 packet/s ICMP echo traffic runs during 5–23 s, exercising both directions.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "load-comparison-lane",
+    "tags": [
+      "native-load",
+      "guarded-comparison",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          12
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          12
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          18.9,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          20.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          20,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "rf-asymmetric-ack",
+    "tags": [
+      "directed-snr",
+      "reverse-ack",
+      "native-counters",
+      "clients-10"
+    ],
+    "duration_ms": 30000,
+    "tick_ms": 30000,
+    "seed": 1921,
+    "traffic_experiment": {
+      "schema": "easymesh.room-traffic.v1",
+      "phases": [
+        {
+          "role": "sta_static_03",
+          "start_ms": 5000,
+          "end_ms": 23000,
+          "packets_per_second": 30,
+          "payload_bytes": 1200
+        }
+      ]
+    },
+    "nodes": [
+      {
+        "role": "sta_static_03",
+        "tx_gain_db_by_band": {
+          "2.4": -45,
+          "5": -45,
+          "6": -45
+        },
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              18.9,
+              12
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "RF · Asymmetric ACK / Counter Guard",
+      "rf": "Fixed load-comparison geometry with a −45 dB configured transmit-gain offset on sta_static_03 across all three bands. AP→client SNR stays strong near extender_1 while client→AP SNR is weaker. Bounded 30 packet/s ICMP echo traffic runs during 5–23 s, exercising both directions.",
+      "optimizer": "Use only native serving/candidate evidence for steering. Configured asymmetry does not select an AP. With the explicit counter guard, excessive native AP TX retries/failures or RX drops abstain from load balancing; missing windows and changed ownership also abstain. Existing weak-link signal rescue remains available.",
+      "watch": "Verify frequency-qualified forward/reverse readbacks, selected medium ACK/no-ACK and PER outcomes, native AP counters, traffic replies and actual association. Strong downlink reception does not prove reverse ACK success. A counter-pressure decision requires measured counter pressure, never the room name or gain offset.",
+      "limits": "The gain is a scenario SNR offset, not native transmit-power control. ICMP and ACK outcomes are stochastic and rate-dependent; nonzero AP retries are not guaranteed. AP RX drops need not measure over-the-air loss. No noise/CCA changes, target pinning or capacity estimate is introduced."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/rf-asymmetric-ack.world.json",
+    "layout": "load-comparison-lane",
+    "mobility": "rf-asymmetric-ack",
+    "layout_sha256": "687b95a632732687f9dbf9a6cffa03c78c811ea9a0f9da4844e41a0fc8c1fea0",
+    "mobility_sha256": "ba1248701a5969c9e8da950c0f5d284e47524d8b87d51039fd5f45971b3fb1cf",
+    "golden_sha256": "65cf649503cedc4cad985f24df2930d48bb501a3ef17596b9f25ed236ab78fcc"
+  },
+  "library": {
+    "category": "reference",
+    "order": 21,
+    "highlights": [
+      "1 moving",
+      "traffic",
+      "asymmetric uplink"
+    ]
+  }
+}

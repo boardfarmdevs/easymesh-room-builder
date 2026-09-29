@@ -1,0 +1,80 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "minimal-canvas",
+  "title": "Minimal canvas (offline)",
+  "description": "The smallest valid world: one gateway and one client. Configurator profile, so any roles and any number of agents are allowed.",
+  "profile": "configurator",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "minimal-canvas",
+    "tags": [
+      "offline",
+      "template"
+    ],
+    "space": {
+      "width_m": 12,
+      "height_m": 8
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          6,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          9,
+          4
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "minimal",
+    "tags": [],
+    "duration_ms": 30000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": []
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Minimal canvas (offline)",
+      "rf": "One directed link pair per band.",
+      "optimizer": "Nothing to decide: one AP.",
+      "watch": "Use it to learn the editor.",
+      "limits": "Not loadable in the live lab (missing agents)."
+    }
+  },
+  "library": {
+    "category": "starter",
+    "order": 2,
+    "highlights": []
+  }
+}

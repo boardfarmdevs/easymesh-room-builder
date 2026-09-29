@@ -1,0 +1,445 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "villa-concrete-core",
+  "title": "Villa with a concrete core",
+  "description": "A reinforced-concrete stair core (18 dB) stands in the middle of an open villa floor. Walkers circle it, so the core repeatedly blocks the gateway.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "villa-concrete-core",
+    "tags": [
+      "home",
+      "large-home",
+      "reinforced-concrete"
+    ],
+    "space": {
+      "width_m": 30,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "core-s-a",
+        "start": [
+          12.0,
+          9.0
+        ],
+        "end": [
+          14.4,
+          9.0
+        ],
+        "loss_db": 18
+      },
+      {
+        "name": "core-s-b",
+        "start": [
+          15.6,
+          9.0
+        ],
+        "end": [
+          18.0,
+          9.0
+        ],
+        "loss_db": 18
+      },
+      {
+        "name": "core-e",
+        "start": [
+          18.0,
+          9.0
+        ],
+        "end": [
+          18.0,
+          15.0
+        ],
+        "loss_db": 18
+      },
+      {
+        "name": "core-n",
+        "start": [
+          12.0,
+          15.0
+        ],
+        "end": [
+          18.0,
+          15.0
+        ],
+        "loss_db": 18
+      },
+      {
+        "name": "core-w",
+        "start": [
+          12.0,
+          9.0
+        ],
+        "end": [
+          12.0,
+          15.0
+        ],
+        "loss_db": 18
+      },
+      {
+        "name": "suite-a",
+        "start": [
+          0.0,
+          16.0
+        ],
+        "end": [
+          6.0,
+          16.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "suite-b",
+        "start": [
+          7.0,
+          16.0
+        ],
+        "end": [
+          8.0,
+          16.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "garage-a",
+        "start": [
+          22.0,
+          0.0
+        ],
+        "end": [
+          22.0,
+          3.4
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "garage-b",
+        "start": [
+          22.0,
+          4.6
+        ],
+        "end": [
+          22.0,
+          8.0
+        ],
+        "loss_db": 8
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          15,
+          7
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          6.5,
+          6.9
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          21.7,
+          17.75
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          22.25,
+          8.2
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          9.45,
+          16.15
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          26,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          28,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          25,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          18,
+          22
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          21
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          2,
+          19
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          4,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          20,
+          17.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "around-the-core",
+    "tags": [
+      "mobile-3",
+      "opposite-directions"
+    ],
+    "duration_ms": 90000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              10,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 8400,
+            "position": [
+              20,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 16400,
+            "position": [
+              20,
+              17
+            ]
+          },
+          {
+            "time_ms": 24800,
+            "position": [
+              10,
+              17
+            ]
+          },
+          {
+            "time_ms": 32800,
+            "position": [
+              10,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 41200,
+            "position": [
+              20,
+              7.5
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              10,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 4000,
+            "position": [
+              10,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 13500,
+            "position": [
+              10,
+              17
+            ]
+          },
+          {
+            "time_ms": 23500,
+            "position": [
+              20,
+              17
+            ]
+          },
+          {
+            "time_ms": 33000,
+            "position": [
+              20,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 43000,
+            "position": [
+              10,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 52500,
+            "position": [
+              10,
+              17
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_03",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              15,
+              7.8
+            ]
+          },
+          {
+            "time_ms": 6200,
+            "position": [
+              15,
+              11.5
+            ]
+          },
+          {
+            "time_ms": 16200,
+            "position": [
+              15,
+              11.5
+            ]
+          },
+          {
+            "time_ms": 22400,
+            "position": [
+              15,
+              7.8
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "reinforced",
+      "reinforced",
+      "reinforced",
+      "reinforced",
+      "reinforced",
+      "drywall",
+      "drywall",
+      "brick",
+      "brick"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Villa with a concrete core",
+      "rf": "The 18 dB core casts an RF shadow; clients behind it lose the gateway even at short distance.",
+      "optimizer": "Two walkers circle the core in opposite directions: each should hand over to the extender on its side of the core, once per side.",
+      "watch": "sta_mobile_03 walks into the stairwell (inside the core) and dwells for 10 s.",
+      "limits": "The core is modelled as four walls; the inside of the stairwell is RF-shielded except through the door gap."
+    }
+  },
+  "library": {
+    "category": "homes",
+    "order": 5,
+    "highlights": [
+      "9 walls",
+      "3 moving"
+    ]
+  }
+}

@@ -1,0 +1,752 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "school-corridor-flash-crowd",
+  "title": "School corridor · class change",
+  "description": "Eight classrooms off a corridor. Twenty pupils' tablets join classroom 2 at 20 s and leave at 50 s, while a teacher walks the corridor.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "school-corridor-flash-crowd",
+    "tags": [
+      "brick",
+      "clients-32",
+      "corridor",
+      "flash-crowd",
+      "school"
+    ],
+    "space": {
+      "width_m": 40,
+      "height_m": 16
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "north-front-a",
+        "start": [
+          0.0,
+          9.0
+        ],
+        "end": [
+          4.4,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-front-b",
+        "start": [
+          5.6,
+          9.0
+        ],
+        "end": [
+          14.4,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-front-c",
+        "start": [
+          15.6,
+          9.0
+        ],
+        "end": [
+          24.4,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-front-d",
+        "start": [
+          25.6,
+          9.0
+        ],
+        "end": [
+          34.4,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-front-e",
+        "start": [
+          35.6,
+          9.0
+        ],
+        "end": [
+          40.0,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-div1",
+        "start": [
+          10.0,
+          9.0
+        ],
+        "end": [
+          10.0,
+          16.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-div2",
+        "start": [
+          20.0,
+          9.0
+        ],
+        "end": [
+          20.0,
+          16.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "north-div3",
+        "start": [
+          30.0,
+          9.0
+        ],
+        "end": [
+          30.0,
+          16.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-front-a",
+        "start": [
+          0.0,
+          7.0
+        ],
+        "end": [
+          4.4,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-front-b",
+        "start": [
+          5.6,
+          7.0
+        ],
+        "end": [
+          14.4,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-front-c",
+        "start": [
+          15.6,
+          7.0
+        ],
+        "end": [
+          24.4,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-front-d",
+        "start": [
+          25.6,
+          7.0
+        ],
+        "end": [
+          34.4,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-front-e",
+        "start": [
+          35.6,
+          7.0
+        ],
+        "end": [
+          40.0,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-div1",
+        "start": [
+          10.0,
+          0.0
+        ],
+        "end": [
+          10.0,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-div2",
+        "start": [
+          20.0,
+          0.0
+        ],
+        "end": [
+          20.0,
+          7.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "south-div3",
+        "start": [
+          30.0,
+          0.0
+        ],
+        "end": [
+          30.0,
+          7.0
+        ],
+        "loss_db": 8
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          8
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          5.0,
+          8.0
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          35.0,
+          8.0
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          15.0,
+          8.0
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          25.0,
+          8.0
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          3,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          7,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          13,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          17,
+          5
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          23,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          33,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          4,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          26,
+          13
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          35,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          15,
+          14
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "class-change",
+    "tags": [
+      "flash-crowd",
+      "mobile-2"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_pool_021",
+        "position": [
+          11.5,
+          10.8
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_022",
+        "position": [
+          13.1,
+          10.8
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_023",
+        "position": [
+          14.7,
+          10.8
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_024",
+        "position": [
+          16.3,
+          10.8
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_025",
+        "position": [
+          17.9,
+          10.8
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_026",
+        "position": [
+          11.5,
+          12.0
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_027",
+        "position": [
+          13.1,
+          12.0
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_028",
+        "position": [
+          14.7,
+          12.0
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_029",
+        "position": [
+          16.3,
+          12.0
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_030",
+        "position": [
+          17.9,
+          12.0
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_031",
+        "position": [
+          11.5,
+          13.2
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_032",
+        "position": [
+          13.1,
+          13.2
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_033",
+        "position": [
+          14.7,
+          13.2
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_034",
+        "position": [
+          16.3,
+          13.2
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_035",
+        "position": [
+          17.9,
+          13.2
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_036",
+        "position": [
+          11.5,
+          14.4
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_037",
+        "position": [
+          13.1,
+          14.4
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_038",
+        "position": [
+          14.7,
+          14.4
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_039",
+        "position": [
+          16.3,
+          14.4
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_pool_040",
+        "position": [
+          17.9,
+          14.4
+        ],
+        "presence": [
+          [
+            20000,
+            50000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              1,
+              8
+            ]
+          },
+          {
+            "time_ms": 27200,
+            "position": [
+              39,
+              8
+            ]
+          },
+          {
+            "time_ms": 54400,
+            "position": [
+              1,
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 2500,
+            "position": [
+              5,
+              8
+            ]
+          },
+          {
+            "time_ms": 10900,
+            "position": [
+              15,
+              8
+            ]
+          },
+          {
+            "time_ms": 14300,
+            "position": [
+              15,
+              12
+            ]
+          },
+          {
+            "time_ms": 34300,
+            "position": [
+              15,
+              12
+            ]
+          },
+          {
+            "time_ms": 37700,
+            "position": [
+              15,
+              8
+            ]
+          },
+          {
+            "time_ms": 46100,
+            "position": [
+              5,
+              8
+            ]
+          },
+          {
+            "time_ms": 48600,
+            "position": [
+              5,
+              5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "brick"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "School corridor · class change",
+      "rf": "Each classroom is enclosed in 8 dB brick with a 1.2 m door; the corridor is open. Twenty tablets appear together in one classroom.",
+      "optimizer": "The flash crowd should spread over nearby APs only when load-aware policy is enabled; signal-only policy keeps them on the strongest AP.",
+      "watch": "Topology gains exactly 20 clients at 20 s and loses them at 50 s — no ghosts.",
+      "limits": "Needs the 100-client pool (32 clients). Presence does not generate traffic load."
+    }
+  },
+  "library": {
+    "category": "workplaces",
+    "order": 2,
+    "highlights": [
+      "16 walls",
+      "2 moving",
+      "presence changes"
+    ]
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "border-ping-pong",
+  "title": "Border ping-pong",
+  "description": "Two extenders face each other; a client hovers ±0.6 m around the exact midpoint every two seconds. Good policy does not follow it back and forth.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "border-ping-pong",
+    "tags": [
+      "border",
+      "hysteresis",
+      "parked-extenders",
+      "stress"
+    ],
+    "space": {
+      "width_m": 24,
+      "height_m": 10
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          1,
+          1
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          6,
+          5
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          5
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          1,
+          9
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          2,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          3,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          7,
+          8
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          17,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          21,
+          8
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          9,
+          4.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          15,
+          5.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "hover-midpoint",
+    "tags": [
+      "ping-pong"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          1,
+          9
+        ],
+        "presence": []
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          2,
+          9
+        ],
+        "presence": []
+      },
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 4000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 6000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 8000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 12000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 16000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 20000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 26000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 32000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 34000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 36000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 38000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 40000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 42000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 44000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 46000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 48000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 50000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 52000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 54000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 56000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 58000,
+            "position": [
+              12.6,
+              5.2
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              11.4,
+              5.2
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Border ping-pong",
+      "rf": "Symmetric geometry: at the midpoint both extenders give the same SNR; the client oscillates 1.2 m across it every tick.",
+      "optimizer": "Hysteresis and cooldowns should keep one association; each steer is a ping-pong.",
+      "watch": "Count handovers of sta_mobile_01: the ideal is zero or one.",
+      "limits": "SNR differences at ±0.6 m are 1–2 dB, inside typical hysteresis."
+    }
+  },
+  "library": {
+    "category": "stress",
+    "order": 2,
+    "highlights": [
+      "1 moving",
+      "presence changes"
+    ]
+  }
+}

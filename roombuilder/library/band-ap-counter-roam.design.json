@@ -1,0 +1,381 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "band-ap-counter-roam",
+  "title": "AP + Band Counter-Roam",
+  "description": "Two dual-band clients cross in opposite directions between gateway and extender_1 regions. Distance changes both the preferred AP and the safe band; one 2.4-only reference client remains near the gateway.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "band-steering-lane",
+    "tags": [
+      "band-steering",
+      "dedicated-qualification",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          4
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          35.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          44.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          45,
+          4.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "band-ap-counter-roam",
+    "tags": [
+      "band-steering",
+      "quick-demo",
+      "opposite-direction",
+      "ap-and-band"
+    ],
+    "duration_ms": 40000,
+    "tick_ms": 1000,
+    "seed": 1914,
+    "pause_at_ms": [
+      16000,
+      30000
+    ],
+    "band_steering": {
+      "sta_static_01": {
+        "allowed_bands": [
+          "2.4",
+          "5"
+        ],
+        "initial_band": "2.4"
+      },
+      "sta_static_03": {
+        "allowed_bands": [
+          "2.4",
+          "5"
+        ],
+        "initial_band": "2.4"
+      },
+      "sta_static_02": {
+        "allowed_bands": [
+          "2.4"
+        ],
+        "initial_band": "2.4"
+      }
+    },
+    "band_steering_expectations": [
+      {
+        "time_ms": 0,
+        "roles": {
+          "sta_static_01": {
+            "band": "5",
+            "ap": "gateway"
+          },
+          "sta_static_03": {
+            "band": "5",
+            "ap": "extender_1"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 16000,
+        "roles": {
+          "sta_static_01": {
+            "band": "2.4",
+            "ap": "extender_1"
+          },
+          "sta_static_03": {
+            "band": "2.4",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 30000,
+        "roles": {
+          "sta_static_01": {
+            "band": "5",
+            "ap": "extender_1"
+          },
+          "sta_static_03": {
+            "band": "5",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 40000,
+        "roles": {
+          "sta_static_01": {
+            "band": "5",
+            "ap": "extender_1"
+          },
+          "sta_static_03": {
+            "band": "5",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "role": "sta_static_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              8.5,
+              12
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              8.5,
+              12
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              27,
+              4
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              27,
+              4
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              35.5,
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              35.5,
+              4
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              35.5,
+              4
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              16,
+              12
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              16,
+              12
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              8.5,
+              12
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "AP + Band Counter-Roam",
+      "rf": "Two dual-band clients cross in opposite directions between gateway and extender_1 regions. Distance changes both the preferred AP and the safe band; one 2.4-only reference client remains near the gateway.",
+      "optimizer": "Initially sta_static_01 should settle on gateway/5 GHz and sta_static_03 on extender_1/5 GHz. At 16 s they exchange APs on 2.4 GHz; at 30 s and 40 s they retain the exchanged APs on 5 GHz. sta_static_02 stays on gateway/2.4 GHz.",
+      "watch": "At both pauses verify each client’s physical AP and frequency independently in addition to both views’ ownership. Inspect per-client decisions and traffic so one completed roam cannot mask the other client’s failure.",
+      "limits": "Exercises combined AP/band policy, not an instruction to roam simultaneously. The script changes position and capabilities, not target associations. Use stable role IDs when display labels differ."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/band-ap-counter-roam.world.json",
+    "layout": "band-steering-lane",
+    "mobility": "band-ap-counter-roam",
+    "layout_sha256": "8720299946878332049125a44d7e1791cff99a2670f4f81ab5a92aa8fd8703d9",
+    "mobility_sha256": "ab2266419343d5fcc10869259323c44c5bc1eb009041e9ed2644cec5df276fd7",
+    "golden_sha256": "0bd8bf3fdc69da3ad3889999fb27d75608feccbd3310eb50e598c3835ac8cfab"
+  },
+  "library": {
+    "category": "reference",
+    "order": 17,
+    "highlights": [
+      "2 moving",
+      "checkpoints",
+      "band steering"
+    ]
+  }
+}

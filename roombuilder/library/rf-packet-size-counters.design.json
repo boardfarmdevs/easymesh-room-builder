@@ -1,0 +1,222 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "rf-packet-size-counters",
+  "title": "RF · Packet Size / Native Counters",
+  "description": "Fixed load-comparison geometry. sta_static_03 offers 1 UDP Mbps with 256-byte payloads during 5–13 s, then the same offered bitrate with 1200-byte payloads during 15–23 s. The intervening and final intervals stop experimental traffic; background frames continue.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "load-comparison-lane",
+    "tags": [
+      "native-load",
+      "guarded-comparison",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          12
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          12
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          18.9,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          20.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          20,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "rf-packet-size-counters",
+    "tags": [
+      "native-counters",
+      "packet-size",
+      "clients-10"
+    ],
+    "duration_ms": 30000,
+    "tick_ms": 30000,
+    "seed": 1921,
+    "traffic_experiment": {
+      "schema": "easymesh.room-traffic.v1",
+      "phases": [
+        {
+          "role": "sta_static_03",
+          "start_ms": 5000,
+          "end_ms": 13000,
+          "mode": "udp",
+          "offered_mbps": 1,
+          "payload_bytes": 256
+        },
+        {
+          "role": "sta_static_03",
+          "start_ms": 15000,
+          "end_ms": 23000,
+          "mode": "udp",
+          "offered_mbps": 1,
+          "payload_bytes": 1200
+        }
+      ]
+    },
+    "nodes": []
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "RF · Packet Size / Native Counters",
+      "rf": "Fixed load-comparison geometry. sta_static_03 offers 1 UDP Mbps with 256-byte payloads during 5–13 s, then the same offered bitrate with 1200-byte payloads during 15–23 s. The intervening and final intervals stop experimental traffic; background frames continue.",
+      "optimizer": "Payload size and offered rate never enter candidate ranking. The default signal policy remains unchanged. The optional load-counter-guard policy requires fresh owner/epoch-matched native rates; missing counters abstain and excessive AP retries, TX failures or RX drops veto load balancing. Weak-link signal rescue keeps its existing gates.",
+      "watch": "Compare actual sender/receiver results, native packet and byte deltas with their windows, and separate retry/TX-failure/RX-drop rates. Smaller payloads request more datagrams at the same bitrate; do not assert an exact native packet ratio across setup, background traffic or reassociation. Inspect decision reasons and actual BSSID.",
+      "limits": "Requires iperf3 and the private gateway route. No retuning or policy activation occurs on load. Same-channel targets remain excluded for load balancing. Zero is valid, unavailable is not zero; summed AP packets are not TX attempts or PHY capacity. Live qualification must be recorded separately."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/rf-packet-size-counters.world.json",
+    "layout": "load-comparison-lane",
+    "mobility": "rf-packet-size-counters",
+    "layout_sha256": "687b95a632732687f9dbf9a6cffa03c78c811ea9a0f9da4844e41a0fc8c1fea0",
+    "mobility_sha256": "4abe3fbacc5e900da838c59ffb000ea2a31f590c5e22dcd9b31db22c5672e973",
+    "golden_sha256": "de6e8e3da538591c50c3afac8c6a50659fd8898440e870938d468095ea757259"
+  },
+  "library": {
+    "category": "reference",
+    "order": 20,
+    "highlights": [
+      "traffic"
+    ]
+  }
+}

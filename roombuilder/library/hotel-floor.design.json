@@ -1,0 +1,775 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "hotel-floor",
+  "title": "Hotel floor · guest walk",
+  "description": "Sixteen rooms off a 60 m corridor with a metal lift shaft at one end. A guest walks from the lift to the far room; staff roam the corridor.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "hotel-floor",
+    "tags": [
+      "corridor",
+      "hotel",
+      "long-building",
+      "metal-shaft"
+    ],
+    "space": {
+      "width_m": 60,
+      "height_m": 12
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "rooms-north-front-a",
+        "start": [
+          4.0,
+          7.0
+        ],
+        "end": [
+          4.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-b",
+        "start": [
+          5.45,
+          7.0
+        ],
+        "end": [
+          11.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-c",
+        "start": [
+          12.45,
+          7.0
+        ],
+        "end": [
+          18.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-d",
+        "start": [
+          19.45,
+          7.0
+        ],
+        "end": [
+          25.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-e",
+        "start": [
+          26.45,
+          7.0
+        ],
+        "end": [
+          32.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-f",
+        "start": [
+          33.45,
+          7.0
+        ],
+        "end": [
+          39.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-g",
+        "start": [
+          40.45,
+          7.0
+        ],
+        "end": [
+          46.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-h",
+        "start": [
+          47.45,
+          7.0
+        ],
+        "end": [
+          53.55,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-front-i",
+        "start": [
+          54.45,
+          7.0
+        ],
+        "end": [
+          60.0,
+          7.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div0",
+        "start": [
+          4.0,
+          7.0
+        ],
+        "end": [
+          4.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div1",
+        "start": [
+          11.0,
+          7.0
+        ],
+        "end": [
+          11.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div2",
+        "start": [
+          18.0,
+          7.0
+        ],
+        "end": [
+          18.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div3",
+        "start": [
+          25.0,
+          7.0
+        ],
+        "end": [
+          25.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div4",
+        "start": [
+          32.0,
+          7.0
+        ],
+        "end": [
+          32.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div5",
+        "start": [
+          39.0,
+          7.0
+        ],
+        "end": [
+          39.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div6",
+        "start": [
+          46.0,
+          7.0
+        ],
+        "end": [
+          46.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-north-div7",
+        "start": [
+          53.0,
+          7.0
+        ],
+        "end": [
+          53.0,
+          12.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-a",
+        "start": [
+          4.0,
+          5.0
+        ],
+        "end": [
+          9.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-b",
+        "start": [
+          10.45,
+          5.0
+        ],
+        "end": [
+          16.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-c",
+        "start": [
+          17.45,
+          5.0
+        ],
+        "end": [
+          23.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-d",
+        "start": [
+          24.45,
+          5.0
+        ],
+        "end": [
+          30.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-e",
+        "start": [
+          31.45,
+          5.0
+        ],
+        "end": [
+          37.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-f",
+        "start": [
+          38.45,
+          5.0
+        ],
+        "end": [
+          44.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-g",
+        "start": [
+          45.45,
+          5.0
+        ],
+        "end": [
+          51.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-h",
+        "start": [
+          52.45,
+          5.0
+        ],
+        "end": [
+          58.55,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-front-i",
+        "start": [
+          59.45,
+          5.0
+        ],
+        "end": [
+          60.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div0",
+        "start": [
+          4.0,
+          0.0
+        ],
+        "end": [
+          4.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div1",
+        "start": [
+          11.0,
+          0.0
+        ],
+        "end": [
+          11.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div2",
+        "start": [
+          18.0,
+          0.0
+        ],
+        "end": [
+          18.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div3",
+        "start": [
+          25.0,
+          0.0
+        ],
+        "end": [
+          25.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div4",
+        "start": [
+          32.0,
+          0.0
+        ],
+        "end": [
+          32.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div5",
+        "start": [
+          39.0,
+          0.0
+        ],
+        "end": [
+          39.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div6",
+        "start": [
+          46.0,
+          0.0
+        ],
+        "end": [
+          46.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "rooms-south-div7",
+        "start": [
+          53.0,
+          0.0
+        ],
+        "end": [
+          53.0,
+          5.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "lift-s-a",
+        "start": [
+          0.5,
+          7.5
+        ],
+        "end": [
+          1.4,
+          7.5
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "lift-s-b",
+        "start": [
+          2.6,
+          7.5
+        ],
+        "end": [
+          3.5,
+          7.5
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "lift-e",
+        "start": [
+          3.5,
+          7.5
+        ],
+        "end": [
+          3.5,
+          11.5
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "lift-n",
+        "start": [
+          0.5,
+          11.5
+        ],
+        "end": [
+          3.5,
+          11.5
+        ],
+        "loss_db": 30
+      },
+      {
+        "name": "lift-w",
+        "start": [
+          0.5,
+          7.5
+        ],
+        "end": [
+          0.5,
+          11.5
+        ],
+        "loss_db": 30
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          3,
+          6
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          25.1,
+          5.95
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          38.95,
+          6.2
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          53.15,
+          5.95
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          11.2,
+          6.1
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          6,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          13,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          20,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          27,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          34,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          41,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          48,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          55,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          58,
+          10.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          10,
+          1.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "guest-walk",
+    "tags": [
+      "long-walk",
+      "mobile-2"
+    ],
+    "duration_ms": 90000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              9
+            ]
+          },
+          {
+            "time_ms": 2500,
+            "position": [
+              2,
+              6
+            ]
+          },
+          {
+            "time_ms": 5500,
+            "position": [
+              2,
+              6
+            ]
+          },
+          {
+            "time_ms": 52200,
+            "position": [
+              58,
+              6
+            ]
+          },
+          {
+            "time_ms": 54800,
+            "position": [
+              58.2,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              30,
+              6
+            ]
+          },
+          {
+            "time_ms": 20000,
+            "position": [
+              5,
+              6
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              55,
+              6
+            ]
+          },
+          {
+            "time_ms": 80000,
+            "position": [
+              30,
+              6
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "metal",
+      "metal",
+      "metal",
+      "metal",
+      "metal"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Hotel floor · guest walk",
+      "rf": "A long, thin building: coverage is limited by distance along the corridor rather than walls. The lift is a 30 dB metal box.",
+      "optimizer": "The guest should hand over along a chain of extenders in order, never skipping back.",
+      "watch": "Serving AP sequence of sta_mobile_01; check that backhaul still reaches the far extender.",
+      "limits": "With backhaul_rf fixed the live lab keeps its startup backhaul regardless of distance."
+    }
+  },
+  "library": {
+    "category": "workplaces",
+    "order": 3,
+    "highlights": [
+      "39 walls",
+      "2 moving"
+    ]
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "band-upgrade-5-6",
+  "title": "Band Upgrade · 5 ↔ 6 GHz",
+  "description": "A 5/6 GHz-capable client starts on 5 GHz, moves away from the gateway and returns. Separate per-frequency link budgets create upgrade and fallback conditions. A 2.4-only reference client stays capability-limited.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "band-steering-lane",
+    "tags": [
+      "band-steering",
+      "dedicated-qualification",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          4
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          35.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          44.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          45,
+          4.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "band-upgrade-5-6",
+    "tags": [
+      "band-steering",
+      "quick-demo",
+      "upgrade-fallback",
+      "pinned-iot"
+    ],
+    "duration_ms": 30000,
+    "tick_ms": 1000,
+    "seed": 1913,
+    "pause_at_ms": [
+      12000
+    ],
+    "band_steering": {
+      "sta_static_01": {
+        "allowed_bands": [
+          "5",
+          "6"
+        ],
+        "initial_band": "5"
+      },
+      "sta_static_02": {
+        "allowed_bands": [
+          "2.4"
+        ],
+        "initial_band": "2.4"
+      }
+    },
+    "band_steering_expectations": [
+      {
+        "time_ms": 0,
+        "roles": {
+          "sta_static_01": {
+            "band": "6",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 12000,
+        "roles": {
+          "sta_static_01": {
+            "band": "5",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 30000,
+        "roles": {
+          "sta_static_01": {
+            "band": "6",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "role": "sta_static_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              8.5,
+              12
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              8.5,
+              12
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              14.0,
+              12
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              14.0,
+              12
+            ]
+          },
+          {
+            "time_ms": 16000,
+            "position": [
+              14.1,
+              12
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              13.9,
+              12
+            ]
+          },
+          {
+            "time_ms": 20000,
+            "position": [
+              14.0,
+              12
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              8.5,
+              12
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Band Upgrade · 5 ↔ 6 GHz",
+      "rf": "A 5/6 GHz-capable client starts on 5 GHz, moves away from the gateway and returns. Separate per-frequency link budgets create upgrade and fallback conditions. A 2.4-only reference client stays capability-limited.",
+      "optimizer": "For sta_static_01, expect gateway/6 GHz after initial settling, gateway/5 GHz at 12 s, and gateway/6 GHz at 30 s. sta_static_02 stays on gateway/2.4 GHz. Unsafe upgrades should be withheld rather than forced.",
+      "watch": "At the pause and finish, compare the native BSSID and operating frequency with the optimizer’s band decision and room properties. Confirm actual traffic after the transition; an unchanged AP name is normal.",
+      "limits": "Requires the live lab’s supported 6 GHz configuration. A 6 GHz association proves neither calibrated Wi-Fi 6E capacity nor regulatory/AFC behavior. The link-color band selector does not steer radios."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/band-upgrade-5-6.world.json",
+    "layout": "band-steering-lane",
+    "mobility": "band-upgrade-5-6",
+    "layout_sha256": "8720299946878332049125a44d7e1791cff99a2670f4f81ab5a92aa8fd8703d9",
+    "mobility_sha256": "e90b285def1a442b1548d777485a640158d7137b2485244741f7076c28a97963",
+    "golden_sha256": "a1885f2d5151eb1c66c77a41824b12fd6774acb79b39b25d924957910f71a98d"
+  },
+  "library": {
+    "category": "reference",
+    "order": 16,
+    "highlights": [
+      "1 moving",
+      "checkpoints",
+      "band steering"
+    ]
+  }
+}

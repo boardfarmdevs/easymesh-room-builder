@@ -1,0 +1,346 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "double-wall-extension",
+  "title": "Extension behind a double wall",
+  "description": "An old house and its extension share two parallel brick walls 20 cm apart. A path through both adds 16 dB; the shared doorway adds nothing.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "double-wall-extension",
+    "tags": [
+      "double-wall",
+      "home",
+      "stacked-walls"
+    ],
+    "space": {
+      "width_m": 18,
+      "height_m": 10
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "old-house-a",
+        "start": [
+          9.0,
+          0.0
+        ],
+        "end": [
+          9.0,
+          4.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "old-house-b",
+        "start": [
+          9.0,
+          5.0
+        ],
+        "end": [
+          9.0,
+          10.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "extension-a",
+        "start": [
+          9.2,
+          0.0
+        ],
+        "end": [
+          9.2,
+          4.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "extension-b",
+        "start": [
+          9.2,
+          5.0
+        ],
+        "end": [
+          9.2,
+          10.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "kitchen",
+        "start": [
+          0.0,
+          6.0
+        ],
+        "end": [
+          5.0,
+          6.0
+        ],
+        "loss_db": 3
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          15.8,
+          4.55
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          4.9,
+          7.65
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          9.2,
+          4.55
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          14.0,
+          7.9
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          1,
+          8.5
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          4,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          7.5,
+          8
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          6.5,
+          1.2
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          3.5,
+          4.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          11,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          13.5,
+          8.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          16.5,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          16.8,
+          8.8
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          12,
+          5.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "through-the-doorway",
+    "tags": [
+      "double-wall",
+      "mobile-2"
+    ],
+    "duration_ms": 50000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              4,
+              4
+            ]
+          },
+          {
+            "time_ms": 3600,
+            "position": [
+              7.5,
+              4.5
+            ]
+          },
+          {
+            "time_ms": 6600,
+            "position": [
+              10.5,
+              4.5
+            ]
+          },
+          {
+            "time_ms": 10500,
+            "position": [
+              14,
+              3
+            ]
+          },
+          {
+            "time_ms": 13800,
+            "position": [
+              16,
+              5.5
+            ]
+          },
+          {
+            "time_ms": 25800,
+            "position": [
+              16,
+              5.5
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              15,
+              8
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              15,
+              8
+            ]
+          },
+          {
+            "time_ms": 14400,
+            "position": [
+              10.5,
+              5.3
+            ]
+          },
+          {
+            "time_ms": 16900,
+            "position": [
+              7.5,
+              5.3
+            ]
+          },
+          {
+            "time_ms": 20600,
+            "position": [
+              4,
+              8
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "drywall"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Extension behind a double wall",
+      "rf": "Two overlapping brick walls (8 + 8 dB) separate the halves; the doorway at y ≈ 4.5 m is open in both. The optimiser keeps an extender on each side so the double wall is rarely crossed.",
+      "optimizer": "Clients in the extension should be served from an extension-side AP; crossing back through the doorway should trigger one move.",
+      "watch": "Inspect a link from the gateway to sta_static_09: wall_loss_db is 16.",
+      "limits": "The builder shows the 'stacked walls' hint for overlapping walls; here they are parallel, not overlapping, which is the recommended way to model a double wall."
+    }
+  },
+  "library": {
+    "category": "homes",
+    "order": 4,
+    "highlights": [
+      "5 walls",
+      "2 moving"
+    ]
+  }
+}

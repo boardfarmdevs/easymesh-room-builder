@@ -1,0 +1,762 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "open-office-meeting-rooms",
+  "title": "Open office with glass meeting rooms",
+  "description": "Thirty clients: desks in the open area, glass meeting rooms along the north wall and a concrete service core. Six people walk to meetings and their laptops sleep on the way.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "open-office-meeting-rooms",
+    "tags": [
+      "clients-30",
+      "concrete-core",
+      "glass",
+      "office"
+    ],
+    "space": {
+      "width_m": 36,
+      "height_m": 22
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "meeting-front-a",
+        "start": [
+          0.0,
+          16.0
+        ],
+        "end": [
+          1.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-front-b",
+        "start": [
+          2.0,
+          16.0
+        ],
+        "end": [
+          8.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-front-c",
+        "start": [
+          9.0,
+          16.0
+        ],
+        "end": [
+          15.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-front-d",
+        "start": [
+          16.0,
+          16.0
+        ],
+        "end": [
+          22.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-front-e",
+        "start": [
+          23.0,
+          16.0
+        ],
+        "end": [
+          29.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-front-f",
+        "start": [
+          30.0,
+          16.0
+        ],
+        "end": [
+          36.0,
+          16.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-divider-7",
+        "start": [
+          7.0,
+          16.0
+        ],
+        "end": [
+          7.0,
+          22.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-divider-14",
+        "start": [
+          14.0,
+          16.0
+        ],
+        "end": [
+          14.0,
+          22.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-divider-21",
+        "start": [
+          21.0,
+          16.0
+        ],
+        "end": [
+          21.0,
+          22.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "meeting-divider-28",
+        "start": [
+          28.0,
+          16.0
+        ],
+        "end": [
+          28.0,
+          22.0
+        ],
+        "loss_db": 2
+      },
+      {
+        "name": "core-s",
+        "start": [
+          15.0,
+          6.0
+        ],
+        "end": [
+          21.0,
+          6.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "core-e",
+        "start": [
+          21.0,
+          6.0
+        ],
+        "end": [
+          21.0,
+          11.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "core-n",
+        "start": [
+          15.0,
+          11.0
+        ],
+        "end": [
+          21.0,
+          11.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "core-w-a",
+        "start": [
+          15.0,
+          6.0
+        ],
+        "end": [
+          15.0,
+          8.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "core-w-b",
+        "start": [
+          15.0,
+          9.0
+        ],
+        "end": [
+          15.0,
+          11.0
+        ],
+        "loss_db": 12
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          3
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.3,
+          8.4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          24.15,
+          17.65
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.05,
+          18.85
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          29.35,
+          7.7
+        ]
+      },
+      {
+        "role": "sta_pool_021",
+        "kind": "station",
+        "position": [
+          8.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_022",
+        "kind": "station",
+        "position": [
+          11.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_023",
+        "kind": "station",
+        "position": [
+          24.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_024",
+        "kind": "station",
+        "position": [
+          27.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_025",
+        "kind": "station",
+        "position": [
+          30.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_026",
+        "kind": "station",
+        "position": [
+          33.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_pool_027",
+        "kind": "station",
+        "position": [
+          2.5,
+          11.5
+        ]
+      },
+      {
+        "role": "sta_pool_028",
+        "kind": "station",
+        "position": [
+          5.5,
+          11.5
+        ]
+      },
+      {
+        "role": "sta_pool_029",
+        "kind": "station",
+        "position": [
+          8.5,
+          11.5
+        ]
+      },
+      {
+        "role": "sta_pool_030",
+        "kind": "station",
+        "position": [
+          11.5,
+          11.5
+        ]
+      },
+      {
+        "role": "sta_pool_031",
+        "kind": "station",
+        "position": [
+          24.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_pool_032",
+        "kind": "station",
+        "position": [
+          27.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_pool_033",
+        "kind": "station",
+        "position": [
+          30.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_pool_034",
+        "kind": "station",
+        "position": [
+          33.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          5.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          8.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          11.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          24.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          27.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          30.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          33.5,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          2.5,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          5.5,
+          6.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "to-the-meetings",
+    "tags": [
+      "clients-30",
+      "mobile-6",
+      "presence"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              5.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 3000,
+            "position": [
+              5.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 11500,
+            "position": [
+              3.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 16100,
+            "position": [
+              3.5,
+              19
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            9000
+          ],
+          [
+            15000,
+            60000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              9.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 6000,
+            "position": [
+              9.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 11100,
+            "position": [
+              8.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 15700,
+            "position": [
+              8.5,
+              19
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            12000
+          ],
+          [
+            18000,
+            60000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_03",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              25.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 9000,
+            "position": [
+              25.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 17800,
+            "position": [
+              22.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 22400,
+            "position": [
+              22.5,
+              19
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            15000
+          ],
+          [
+            21000,
+            60000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_04",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              28.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 12000,
+            "position": [
+              28.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 17100,
+            "position": [
+              29.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 22100,
+            "position": [
+              29.5,
+              19.5
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            18000
+          ],
+          [
+            24000,
+            60000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_05",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              31.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 15000,
+            "position": [
+              31.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 30800,
+            "position": [
+              15.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 35400,
+            "position": [
+              15.5,
+              19
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            21000
+          ],
+          [
+            27000,
+            60000
+          ]
+        ]
+      },
+      {
+        "role": "sta_mobile_06",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              3.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              3.5,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 23300,
+            "position": [
+              1.5,
+              13.5
+            ]
+          },
+          {
+            "time_ms": 27900,
+            "position": [
+              1.5,
+              19
+            ]
+          }
+        ],
+        "presence": [
+          [
+            0,
+            24000
+          ],
+          [
+            30000,
+            60000
+          ]
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "glass",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Open office with glass meeting rooms",
+      "rf": "Glass costs only 2 dB, so meeting rooms stay well covered; the 12 dB concrete core is the main obstruction. Laptops drop off air for 6 s while being carried.",
+      "optimizer": "Returning laptops must re-associate without ghost or duplicate entries; the 24 desk clients should stay put.",
+      "watch": "Client count drops by one for 6 s per walker, then recovers in the meeting room.",
+      "limits": "Needs the 100-client pool (30 clients). Presence gaps model sleep, not roaming."
+    }
+  },
+  "library": {
+    "category": "workplaces",
+    "order": 1,
+    "highlights": [
+      "15 walls",
+      "6 moving",
+      "presence changes"
+    ]
+  }
+}

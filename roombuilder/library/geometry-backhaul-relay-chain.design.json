@@ -1,0 +1,380 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "geometry-backhaul-relay-chain",
+  "title": "Relay chain · geometry backhaul",
+  "description": "A 70 m building where only a chain of relays reaches the far end. backhaul_rf is 'geometry', so AP-to-AP RF follows the room; extender_4 walks out of range and back.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "geometry-backhaul-relay-chain",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "long-building",
+      "relay-chain"
+    ],
+    "space": {
+      "width_m": 70,
+      "height_m": 14
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "firewall-14-a",
+        "start": [
+          14.0,
+          0.0
+        ],
+        "end": [
+          14.0,
+          6.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-14-b",
+        "start": [
+          14.0,
+          8.0
+        ],
+        "end": [
+          14.0,
+          14.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-28-a",
+        "start": [
+          28.0,
+          0.0
+        ],
+        "end": [
+          28.0,
+          6.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-28-b",
+        "start": [
+          28.0,
+          8.0
+        ],
+        "end": [
+          28.0,
+          14.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-42-a",
+        "start": [
+          42.0,
+          0.0
+        ],
+        "end": [
+          42.0,
+          6.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-42-b",
+        "start": [
+          42.0,
+          8.0
+        ],
+        "end": [
+          42.0,
+          14.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-56-a",
+        "start": [
+          56.0,
+          0.0
+        ],
+        "end": [
+          56.0,
+          6.0
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "firewall-56-b",
+        "start": [
+          56.0,
+          8.0
+        ],
+        "end": [
+          56.0,
+          14.0
+        ],
+        "loss_db": 12
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          7
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          17.5,
+          7.2
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          31,
+          6.8
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          44.5,
+          7.2
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          58,
+          6.8
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          16,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          23,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          30,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          37,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          44,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          51,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          58,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          66,
+          11
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "relay-chain",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "mobile-1"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "backhaul_rf": "geometry",
+    "pause_at_ms": [
+      16000
+    ],
+    "nodes": [
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              58,
+              6.8
+            ]
+          },
+          {
+            "time_ms": 100,
+            "position": [
+              58,
+              6.8
+            ]
+          },
+          {
+            "time_ms": 2100,
+            "position": [
+              58,
+              6.8
+            ]
+          },
+          {
+            "time_ms": 12800,
+            "position": [
+              67,
+              12.5
+            ]
+          },
+          {
+            "time_ms": 12900,
+            "position": [
+              67,
+              12.5
+            ]
+          },
+          {
+            "time_ms": 18900,
+            "position": [
+              67,
+              12.5
+            ]
+          },
+          {
+            "time_ms": 29600,
+            "position": [
+              58,
+              6.8
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              7
+            ]
+          },
+          {
+            "time_ms": 50800,
+            "position": [
+              68,
+              7
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete",
+      "concrete"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Relay chain · geometry backhaul",
+      "rf": "12 dB concrete firewalls every 14 m with aligned 2 m openings: each relay sees its neighbours at ≈ 25 dB but the next-but-one only below 20 dB, so a chain beats any direct link. Geometry backhaul applies AP-to-AP RF from the room during load and playback.",
+      "optimizer": "Native parent selection should form a chain gateway → e1 → e2 → e3 → e4; the external optimizer only steers clients. When extender_4 moves away its parent link weakens.",
+      "watch": "At the 16 s checkpoint compare applied bidirectional 5 GHz SNR with the actual parent tree.",
+      "limits": ".wmd exports stay fronthaul-only; geometry backhaul needs the interactive room engine."
+    }
+  },
+  "library": {
+    "category": "stress",
+    "order": 6,
+    "highlights": [
+      "8 walls",
+      "2 moving",
+      "checkpoints",
+      "geometry backhaul"
+    ]
+  }
+}

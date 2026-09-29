@@ -1,0 +1,222 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "traffic-quieter-ap",
+  "title": "Traffic · Busy AP / Quieter Target",
+  "description": "Two extenders have similar strong coverage around sta_static_03. It offers 1 then 8 UDP Mbps during 5–10 and 10–23 s with 1200-byte datagrams. Setup and result collection consume part of each phase. Geometry and channels are not changed by this schedule.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "load-comparison-lane",
+    "tags": [
+      "native-load",
+      "guarded-comparison",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          12
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          12
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          18.9,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          20.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          20,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "duration_ms": 30000,
+    "tick_ms": 1000,
+    "seed": 1916,
+    "name": "traffic-quieter-ap",
+    "tags": [
+      "native-load",
+      "quieter-ap-comparison",
+      "clients-10"
+    ],
+    "traffic_experiment": {
+      "schema": "easymesh.room-traffic.v1",
+      "phases": [
+        {
+          "role": "sta_static_03",
+          "start_ms": 5000,
+          "end_ms": 10000,
+          "mode": "udp",
+          "offered_mbps": 1,
+          "payload_bytes": 1200
+        },
+        {
+          "role": "sta_static_03",
+          "start_ms": 10000,
+          "end_ms": 23000,
+          "mode": "udp",
+          "offered_mbps": 8,
+          "payload_bytes": 1200
+        }
+      ]
+    },
+    "nodes": []
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Traffic · Busy AP / Quieter Target",
+      "rf": "Two extenders have similar strong coverage around sta_static_03. It offers 1 then 8 UDP Mbps during 5–10 and 10–23 s with 1200-byte datagrams. Setup and result collection consume part of each phase. Geometry and channels are not changed by this schedule.",
+      "optimizer": "Default same-channel setup is a negative control: never load-balance onto a supposedly independent budget on the same radio/channel. For a positive comparison, prepare different native fronthaul channels, matching live bindings and client frequency permissions, and an explicit load-aware-policy session first. Steer only if native overload, activity, freshness, signal, hop and quieter-channel gates all pass.",
+      "watch": "Select sta_static_03; correlate sender actual, receiver goodput/loss, current native utilization and each target exclusion in RF inspector. Confirm any actual roam in both views and native BSSID; retain ten clients. No overload or no safe target is a legitimate no-action result.",
+      "limits": "The room does not retune radios, enable the load policy, pin a BSSID or manufacture high utilization. A high offered rate alone does not guarantee overload or a positive balancing demonstration."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/traffic-quieter-ap.world.json",
+    "layout": "load-comparison-lane",
+    "mobility": "traffic-quieter-ap",
+    "layout_sha256": "687b95a632732687f9dbf9a6cffa03c78c811ea9a0f9da4844e41a0fc8c1fea0",
+    "mobility_sha256": "51e3d0683083e3fcaecff48b6f0c4fdc08ee783568d5ea61bb650309cc75e043",
+    "golden_sha256": "50ad5b9c0619e978d35a53dcfc98a7318103edb841bf9b1353120ed1e8cb0de2"
+  },
+  "library": {
+    "category": "reference",
+    "order": 19,
+    "highlights": [
+      "traffic"
+    ]
+  }
+}

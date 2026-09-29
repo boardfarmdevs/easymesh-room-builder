@@ -1,0 +1,500 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "l-shaped-house",
+  "title": "L-shaped house with garden",
+  "description": "The house occupies an L; the empty corner is the garden. Brick exterior walls separate the garden from the house, so a client stepping outside loses 8 dB per wall.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "l-shaped-house",
+    "tags": [
+      "exterior",
+      "garden",
+      "home",
+      "l-shape"
+    ],
+    "space": {
+      "width_m": 24,
+      "height_m": 18
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "garden-south-a",
+        "start": [
+          12.0,
+          9.0
+        ],
+        "end": [
+          15.5,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "garden-south-b",
+        "start": [
+          16.5,
+          9.0
+        ],
+        "end": [
+          24.0,
+          9.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "garden-west-a",
+        "start": [
+          12.0,
+          9.0
+        ],
+        "end": [
+          12.0,
+          13.5
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "garden-west-b",
+        "start": [
+          12.0,
+          14.5
+        ],
+        "end": [
+          12.0,
+          18.0
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "living-east-a",
+        "start": [
+          6.0,
+          0.0
+        ],
+        "end": [
+          6.0,
+          6.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "living-east-b",
+        "start": [
+          6.0,
+          7.0
+        ],
+        "end": [
+          6.0,
+          9.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "upper-south-a",
+        "start": [
+          0.0,
+          9.0
+        ],
+        "end": [
+          2.5,
+          9.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "upper-south-b",
+        "start": [
+          3.5,
+          9.0
+        ],
+        "end": [
+          8.5,
+          9.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "upper-south-c",
+        "start": [
+          9.5,
+          9.0
+        ],
+        "end": [
+          12.0,
+          9.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "upper-mid-a",
+        "start": [
+          6.0,
+          9.0
+        ],
+        "end": [
+          6.0,
+          11.55
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "upper-mid-b",
+        "start": [
+          6.0,
+          12.45
+        ],
+        "end": [
+          6.0,
+          18.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "garage-a",
+        "start": [
+          17.0,
+          0.0
+        ],
+        "end": [
+          17.0,
+          5.75
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "garage-b",
+        "start": [
+          17.0,
+          8.25
+        ],
+        "end": [
+          17.0,
+          9.0
+        ],
+        "loss_db": 8
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          9,
+          4
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          19.8,
+          13.7
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          6.05,
+          12.0
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          20.75,
+          3.75
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          7.0,
+          7.35
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          4,
+          7.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          10.5,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          14.5,
+          6.0
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          21.5,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          2.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          4.5,
+          16.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          8.5,
+          13
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          10.5,
+          16.8
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          15,
+          2
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "garden-visit",
+    "tags": [
+      "mobile-2",
+      "outdoor"
+    ],
+    "duration_ms": 80000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "time_ms": 2900,
+            "position": [
+              5,
+              6.5
+            ]
+          },
+          {
+            "time_ms": 5800,
+            "position": [
+              9,
+              6.5
+            ]
+          },
+          {
+            "time_ms": 10900,
+            "position": [
+              16,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 14200,
+            "position": [
+              16,
+              12
+            ]
+          },
+          {
+            "time_ms": 17800,
+            "position": [
+              20,
+              15
+            ]
+          },
+          {
+            "time_ms": 32800,
+            "position": [
+              20,
+              15
+            ]
+          },
+          {
+            "time_ms": 35400,
+            "position": [
+              22,
+              12
+            ]
+          },
+          {
+            "time_ms": 40000,
+            "position": [
+              16,
+              10
+            ]
+          },
+          {
+            "time_ms": 41800,
+            "position": [
+              16,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 46200,
+            "position": [
+              10,
+              7
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              9,
+              16
+            ]
+          },
+          {
+            "time_ms": 4200,
+            "position": [
+              8,
+              12
+            ]
+          },
+          {
+            "time_ms": 5500,
+            "position": [
+              6.8,
+              12
+            ]
+          },
+          {
+            "time_ms": 9600,
+            "position": [
+              3,
+              10.5
+            ]
+          },
+          {
+            "time_ms": 14600,
+            "position": [
+              3,
+              10.5
+            ]
+          },
+          {
+            "time_ms": 17600,
+            "position": [
+              3,
+              7.5
+            ]
+          },
+          {
+            "time_ms": 22600,
+            "position": [
+              8,
+              7.5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "brick",
+      "brick",
+      "brick",
+      "brick",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "brick",
+      "brick"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "L-shaped house with garden",
+      "rf": "Two 8 dB brick walls face the garden; a client in the far garden corner reaches most APs through one or two of them. Upstairs-style rooms are split by 3 dB drywall.",
+      "optimizer": "The garden walker should move to whichever extender sees the garden through the doorway, then return after re-entering.",
+      "watch": "At 15 s of garden dwell, compare the dashed best link with the actual association.",
+      "limits": "Outdoor propagation uses the indoor exponent; no ground reflection is modelled."
+    }
+  },
+  "library": {
+    "category": "homes",
+    "order": 3,
+    "highlights": [
+      "13 walls",
+      "2 moving"
+    ]
+  }
+}

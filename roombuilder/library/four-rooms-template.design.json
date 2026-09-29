@@ -1,0 +1,381 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "four-rooms-template",
+  "title": "Four rooms with doorways",
+  "description": "A cross of 5 dB interior walls with door gaps splits the floor into four rooms. Two walkers cross through the doors while ten clients stay put.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "four-rooms-template",
+    "tags": [
+      "doors",
+      "five-agent",
+      "template",
+      "walls"
+    ],
+    "space": {
+      "width_m": 20,
+      "height_m": 14
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "north-south-a",
+        "start": [
+          10.0,
+          0.0
+        ],
+        "end": [
+          10.0,
+          3.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "north-south-b",
+        "start": [
+          10.0,
+          4.0
+        ],
+        "end": [
+          10.0,
+          10.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "north-south-c",
+        "start": [
+          10.0,
+          11.0
+        ],
+        "end": [
+          10.0,
+          14.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "east-west-a",
+        "start": [
+          0.0,
+          7.0
+        ],
+        "end": [
+          4.0,
+          7.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "east-west-b",
+        "start": [
+          5.0,
+          7.0
+        ],
+        "end": [
+          15.0,
+          7.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "east-west-c",
+        "start": [
+          16.0,
+          7.0
+        ],
+        "end": [
+          20.0,
+          7.0
+        ],
+        "loss_db": 5
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          5.5,
+          5.5
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          14.95,
+          4.7
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          5.0,
+          9.35
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          15.4,
+          10.2
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          2.65,
+          3.25
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          7,
+          2.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          13,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          18,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          2.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          7.5,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          12.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          17.5,
+          11.5
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          4,
+          9.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          16,
+          9
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "doorway-walks",
+    "tags": [
+      "doors",
+      "mobile-2"
+    ],
+    "duration_ms": 40000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              4
+            ]
+          },
+          {
+            "time_ms": 2100,
+            "position": [
+              4.5,
+              5.5
+            ]
+          },
+          {
+            "time_ms": 4300,
+            "position": [
+              4.5,
+              8.5
+            ]
+          },
+          {
+            "time_ms": 8300,
+            "position": [
+              4.5,
+              8.5
+            ]
+          },
+          {
+            "time_ms": 11200,
+            "position": [
+              8,
+              10.5
+            ]
+          },
+          {
+            "time_ms": 14100,
+            "position": [
+              12,
+              10.5
+            ]
+          },
+          {
+            "time_ms": 17000,
+            "position": [
+              16,
+              11
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              18,
+              5
+            ]
+          },
+          {
+            "time_ms": 2200,
+            "position": [
+              15.5,
+              5.5
+            ]
+          },
+          {
+            "time_ms": 5200,
+            "position": [
+              15.5,
+              5.5
+            ]
+          },
+          {
+            "time_ms": 7700,
+            "position": [
+              15.5,
+              8.5
+            ]
+          },
+          {
+            "time_ms": 12800,
+            "position": [
+              12,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 16200,
+            "position": [
+              8,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 20400,
+            "position": [
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "interior",
+      "interior",
+      "interior",
+      "interior",
+      "interior",
+      "interior"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Four rooms with doorways",
+      "rf": "Every wall crossing costs 5 dB; walking through a doorway crosses nothing, so links jump when a client leaves the gap.",
+      "optimizer": "Walkers should be steered once per room change, after the new room's AP is clearly stronger.",
+      "watch": "Serving AP before and after each doorway; no flapping while inside the gap.",
+      "limits": "Straight-line model: doorways are exact gaps, not diffraction."
+    }
+  },
+  "library": {
+    "category": "starter",
+    "order": 3,
+    "highlights": [
+      "6 walls",
+      "2 moving"
+    ]
+  }
+}

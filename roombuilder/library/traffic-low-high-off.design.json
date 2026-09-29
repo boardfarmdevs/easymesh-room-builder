@@ -1,0 +1,222 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "traffic-low-high-off",
+  "title": "Traffic · Low → High → Off",
+  "description": "Fixed geometry; sta_static_01 offers 1 UDP Mbps during 5–10 s, then 8 Mbps during 10–23 s, using 1200-byte datagrams through its existing wlan0. Setup and result collection consume part of each phase. The first five and last seven seconds have no experimental traffic.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "band-steering-lane",
+    "tags": [
+      "band-steering",
+      "dedicated-qualification",
+      "clients-10"
+    ],
+    "space": {
+      "width_m": 50,
+      "height_m": 24
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          12
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          4
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          35,
+          20
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          45,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8.5,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8.5,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          35.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          44.5,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          45,
+          4.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          35.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          35,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          45.5,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          45,
+          20.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "duration_ms": 30000,
+    "tick_ms": 1000,
+    "seed": 1916,
+    "name": "traffic-low-high-off",
+    "tags": [
+      "quick-demo",
+      "bounded-traffic",
+      "clients-10"
+    ],
+    "traffic_experiment": {
+      "schema": "easymesh.room-traffic.v1",
+      "phases": [
+        {
+          "role": "sta_static_01",
+          "start_ms": 5000,
+          "end_ms": 10000,
+          "mode": "udp",
+          "offered_mbps": 1,
+          "payload_bytes": 1200
+        },
+        {
+          "role": "sta_static_01",
+          "start_ms": 10000,
+          "end_ms": 23000,
+          "mode": "udp",
+          "offered_mbps": 8,
+          "payload_bytes": 1200
+        }
+      ]
+    },
+    "nodes": []
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Traffic · Low → High → Off",
+      "rf": "Fixed geometry; sta_static_01 offers 1 UDP Mbps during 5–10 s, then 8 Mbps during 10–23 s, using 1200-byte datagrams through its existing wlan0. Setup and result collection consume part of each phase. The first five and last seven seconds have no experimental traffic.",
+      "optimizer": "Default signal policy need not steer because traffic increased. With a deliberately enabled native-load policy, inspect actual AP reports and rejection reasons; offered rate is not a utilization input.",
+      "watch": "Open RF inspector → Traffic experiment for offered rate, sender actual, receiver goodput and loss. Compare native AP utilization and sample age in Native observations with the separate modeled channel-activity panel. Topology should retain ten clients and accurate serving ownership.",
+      "limits": "Requires guest-host iperf3 and the configured private gateway LAN path. Missing or cancelled records cannot qualify a phase. Offered rate is not delivered goodput or physical capacity. Ordinary probes/beacons continue during the off phase. Pause, lease expiry, source offline or changing rooms stops the experiment."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/traffic-low-high-off.world.json",
+    "layout": "band-steering-lane",
+    "mobility": "traffic-low-high-off",
+    "layout_sha256": "8720299946878332049125a44d7e1791cff99a2670f4f81ab5a92aa8fd8703d9",
+    "mobility_sha256": "427d0d089facf4e48e87f6c84bdcf8b84a7e9a7e08258f34ca84c2235fddf782",
+    "golden_sha256": "f5aa0331273eae74b533c532bd756c103d4ce21ba29adb00077de4d542a317bf"
+  },
+  "library": {
+    "category": "reference",
+    "order": 18,
+    "highlights": [
+      "traffic"
+    ]
+  }
+}

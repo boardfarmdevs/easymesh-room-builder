@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>EasyMesh room builder — manual</title>
+<style>
+  :root { color-scheme: light; --paper: #faf8f3; --ink: #2a2622; --muted: #655e57; --rule: #d9d2c5; --accent: #1f5f8b; }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 20px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  header { padding: 26px 32px 18px; border-bottom: 1px solid var(--rule); background: #f0ece2; }
+  h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.2; margin: 5px 0 12px; }
+  .eyebrow { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  header p { max-width: 76ch; margin: 6px 0; }
+  .tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+  input, button { font: inherit; color: inherit; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 5px; background: #fff; }
+  input { width: min(100%, 330px); }
+  button { cursor: pointer; }
+  .layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); max-width: 1200px; margin: auto; }
+  nav { padding: 24px 20px; border-right: 1px solid var(--rule); position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; }
+  nav ol { padding-left: 22px; margin: 10px 0; }
+  nav li { padding: 4px 0; line-height: 1.4; }
+  nav a { text-decoration: none; font-size: 14px; }
+  main { min-width: 0; padding: 6px 32px 40px; }
+  section { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  section[hidden], nav li[hidden] { display: none; }
+  h2 { color: var(--accent); font-size: 23px; line-height: 1.3; margin: 0 0 14px; }
+  h3 { font-size: 18px; margin: 22px 0 6px; }
+  p { margin: 10px 0; }
+  li { margin: 5px 0; }
+  ul, ol { padding-left: 24px; }
+  .note { border-left: 4px solid var(--accent); padding: 10px 16px; background: #eaf1f5; }
+  .attention { border-left-color: #a56700; background: #faf0d8; }
+  .table-wrap { max-width: 100%; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+  th { background: #f0ece2; }
+  code, kbd { font: .9em ui-monospace, "Cascadia Code", monospace; overflow-wrap: anywhere; }
+  code { background: #eee9df; padding: 1px 4px; border-radius: 3px; }
+  kbd { border: 1px solid #b8b0a2; border-radius: 3px; padding: 1px 5px; background: #fff; }
+  pre { background: #eee9df; padding: 16px; overflow: auto; font-size: 13px; line-height: 1.55; }
+  pre code { padding: 0; overflow-wrap: normal; background: none; }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; border: 1px solid #0002; }
+  #searchStatus { color: var(--muted); font-size: 13px; }
+  footer { color: var(--muted); padding: 20px 32px; font-size: 13px; border-top: 1px solid var(--rule); }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } nav { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--rule); } header, main, footer { padding-left: 18px; padding-right: 18px; } }
+  @media print { body { background: #fff; font-size: 11pt; } .tools, nav { display: none !important; } .layout { display: block; } main { padding: 0; } section[hidden] { display: block !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">EasyMesh research lab · room builder guide</div>
+  <h1>The room builder manual</h1>
+  <p>Design the virtual rooms the EasyMesh optimizer is evaluated in: a floor of any size, walls of any material, the mesh agents and their clients, and the movement, presence and experiment metadata of a scenario. Everything is written in the configurator's own language and compiles to the same <code>wmdcfg.world-plan.v1</code> as <code>wmdcfg world-compile</code>.</p>
+  <div class="tools"><label for="search">Search the manual</label> <input id="search" type="search" placeholder="wall, keyframe, tick, backhaul…"> <span id="searchStatus" role="status"></span></div>
+</header>
+<div class="layout">
+<nav aria-label="Contents"><ol id="toc"></ol></nav>
+<main id="content">
+
+<section id="overview"><h2>What the builder does</h2>
+<p>The lab's rooms are <em>Golden Worlds</em>: two JSON source documents that the configurator compiles into an RF timeline for wmediumd.</p>
+<pre><code>layout   (wmdcfg.world-layout.v1)  space · propagation · walls · fixed agents and clients
+mobility (wmdcfg.mobility.v1)      duration · tick · seed · paths · presence · checkpoints · metadata
+                        │ world-compile
+                        ▼
+world plan (wmdcfg.world-plan.v1)  positions + presence + directed SNR per band at every tick
+                        │ world-export --band 2.4|5|6|all
+                        ▼
+.wmd phase scenario  →  bind / compile / run on the lab's atomic wmediumd control socket</code></pre>
+<p>The builder edits those two documents directly — verbatim, with no extra fields — and keeps builder-only metadata (wall materials, notes, the room guide text) beside them in a <code>roombuilder.design.v1</code> file. Its compiler is a faithful port of <code>wmdcfg/world.py</code> and <code>geometry.py</code>; the test suite proves that all 50 library rooms compile <strong>byte-identically</strong> with the reference configurator and that every reference golden world is reproduced, in step with upstream commit <code>a796f3a</code>.</p>
+<div class="note">The builder never talks to a live lab. What it shows is the configurator's RF model (the same numbers the lab will apply); association, steering and backhaul parents are decided by the real EasyMesh software once the room is loaded.</div>
+</section>
+
+<section id="quickstart"><h2>Quick start</h2>
+<ol>
+<li><strong>Library…</strong> opens 50 rooms. The <em>Reference lab rooms</em> are the configurator's golden worlds; the others are new examples (homes, offices, a warehouse, a 100-client arena, stress tests).</li>
+<li>Or <strong>New…</strong>: choose a size and a template. <em>Lab starter</em> adds the gateway, ten static clients and four optimally placed extenders.</li>
+<li>Pick a wall material and draw with <kbd>W</kbd> (click, click, … <kbd>Esc</kbd>), drop a rectangle of walls with <kbd>R</kbd>, cut doors with <kbd>D</kbd>.</li>
+<li>Add agents with <kbd>E</kbd> and clients with <kbd>C</kbd>, or use <strong>Devices → Place extenders optimally</strong>.</li>
+<li>Select a client and press <kbd>P</kbd>; click the floor to add waypoints. <kbd>Space</kbd> plays the scenario.</li>
+<li>Watch the badge at the bottom right. <strong>Check → Run verification</strong> runs the full suite; <strong>Export… → Lab bundle</strong> writes everything the lab needs.</li>
+<li><strong>Save</strong> (<kbd>Ctrl</kbd>+<kbd>S</kbd>) keeps the design on the server with a revision history.</li>
+</ol>
+</section>
+
+<section id="screen"><h2>The screen</h2>
+<ul>
+<li><strong>Sidebar</strong> — the design card (title, save state, New/Library/Open/Save/Import/Export) and six tabs: Room, Walls, Devices, Motion, Scenario, Check. Drag the divider to resize it; double-click it to reset.</li>
+<li><strong>Room view</strong> — the same scene the room viewer draws: floor with a 2 m grid, translucent walls with their name and loss on the floor, cone agents and sphere clients with their labels and 10-segment signal gauges, the strongest simulated link of each client (dashed, red → yellow → green), backhaul ribbons on the floor and purple trails.</li>
+<li><strong>Toolbar</strong> — tools, camera (3D / Plan / Walk), Fit, undo/redo, Heatmap, Screenshot, Full screen. The strip below it shows options of the active tool (materials, door width, walk speed, snap).</li>
+<li><strong>Properties panel</strong> (dark, draggable) — everything about the selection: position, role, transmit adjustment, wired backhaul, presence and path summary, and a live link table with both directions per band.</li>
+<li><strong>Timeline</strong> — play/pause, time, scrub, speed, band, and (via <em>Lanes</em>) one lane per moving or appearing role with presence bars, waypoint ticks and checkpoints.</li>
+<li><strong>Check badge</strong> — green when the room compiles and is admissible for the selected lab profile; amber for warnings; red when the configurator would reject it. Click it for details.</li>
+</ul>
+<p>Hover or focus any control for an explanation. Tips on configurator properties also show the document they belong to and their constraints.</p>
+</section>
+
+<section id="designs"><h2>Designs, the library, import and export</h2>
+<h3>Saving</h3>
+<p>Designs are stored on the server in the <code>designs/</code> folder (one JSON file each). Every save keeps the previous version in <code>designs/.history/&lt;id&gt;/</code> (the newest 40); <strong>Open…</strong> lists them and can reopen any revision. If the same design was saved from another tab, the save is refused and offered as a copy instead. Your working room is also kept in the browser, so a reload restores it.</p>
+<h3>Import</h3>
+<table><tr><th>You drop</th><th>Result</th></tr>
+<tr><td>a builder design</td><td>opened as is</td></tr>
+<tr><td>a layout (+ a mobility)</td><td>both used verbatim; without a mobility a 60 s stationary scenario is created</td></tr>
+<tr><td>a mobility alone</td><td>applied to the current room's layout</td></tr>
+<tr><td>a compiled <code>.world.json</code></td><td>exact when its layout and mobility are in the library (matched by hash); otherwise rebuilt: room size from walls and positions, propagation fitted from the links (reference SNR, exponent, floor), transmit adjustments from link asymmetry, compressed paths and presence spans. The import notes report how many directed link values the rebuilt room reproduces — 100 % for every reference world.</td></tr>
+<tr><td>a <code>.wmd</code> scenario</td><td>refused with an explanation: it contains per-link SNR phases, not geometry.</td></tr></table>
+<h3>Export</h3>
+<table><tr><th>Format</th><th>Contents</th></tr>
+<tr><td>Lab bundle (.zip)</td><td><code>worlds/layouts/</code>, <code>worlds/mobility/</code>, <code>worlds/golden/</code> exactly where the configurator tree expects them, <code>.wmd</code> for 2.4/5/6/all, the <code>build-goldens.sh</code> line, a room-guide entry, the verification report and a README</td></tr>
+<tr><td>Layout / Mobility JSON</td><td>the configurator source documents</td></tr>
+<tr><td>Golden world</td><td>compact, sorted JSON — byte-identical to <code>build-goldens.sh</code> output (and an indented variant)</td></tr>
+<tr><td>.wmd</td><td><code>world-export</code> for one band, or all bands frequency-qualified</td></tr>
+<tr><td>Design JSON</td><td>layout + mobility + builder metadata</td></tr>
+<tr><td>PNG / JPEG / WebP / 4K</td><td>the current camera at any scale, optional transparent background, optional title and legend</td></tr>
+<tr><td>SVG view</td><td>the current camera as vector graphics</td></tr>
+<tr><td>SVG floor plan</td><td>architectural top-down plan to scale, walls by material, devices, paths, links, optional heatmap, legend and scale bar</td></tr>
+<tr><td>DXF</td><td>AutoCAD R12 drawing in metres, one layer per wall material</td></tr>
+<tr><td>glTF / GLB / OBJ / STL</td><td>3D models of the room for other tools or 3D printing</td></tr>
+<tr><td>WebM</td><td>a recording of the whole scenario from the current camera</td></tr></table>
+</section>
+
+<section id="walls"><h2>Walls</h2>
+<p>In the configurator a wall is a straight segment with one number, <code>loss_db</code>, added on every band each time the straight line between two devices <em>properly crosses</em> it. A material is a builder preset for that number and a drawing style; exported layouts carry only <code>name</code>, <code>start</code>, <code>end</code> and <code>loss_db</code>.</p>
+<table><tr><th>Material</th><th>Loss</th><th>Use</th></tr>
+<tr><td><span class="swatch" style="background:#9fc5d6"></span>Glass / window</td><td>2 dB</td><td>glass partitions, meeting rooms</td></tr>
+<tr><td><span class="swatch" style="background:#d9cdb8"></span>Drywall</td><td>3 dB</td><td>stud partitions, bathrooms</td></tr>
+<tr><td><span class="swatch" style="background:#b8ad9a"></span>Interior wall</td><td>5 dB</td><td>the value of every wall in the reference homes</td></tr>
+<tr><td><span class="swatch" style="background:#b08a5a"></span>Solid wood / door</td><td>6 dB</td><td>timber walls, heavy doors</td></tr>
+<tr><td><span class="swatch" style="background:#b0654a"></span>Brick</td><td>8 dB</td><td>single-leaf brick or block</td></tr>
+<tr><td><span class="swatch" style="background:#8f8f8a"></span>Concrete partition</td><td>12 dB</td><td>the reference courtyard partition</td></tr>
+<tr><td><span class="swatch" style="background:#6f6f6b"></span>Reinforced concrete</td><td>18 dB</td><td>load-bearing walls, stair cores</td></tr>
+<tr><td><span class="swatch" style="background:#5d6874"></span>Metal / shaft / racks</td><td>30 dB</td><td>lift shafts, racking</td></tr>
+<tr><td><span class="swatch" style="background:#3e3a36"></span>RF isolation</td><td>70 dB</td><td>the reference isolation wall that cuts a relay off</td></tr>
+<tr><td>Custom</td><td>any ≥ 0</td><td>fractional values are allowed</td></tr></table>
+<h3>Rules worth knowing</h3>
+<ul>
+<li><strong>Standing on a wall's line ignores that wall.</strong> A path that starts exactly on a wall (or runs along it) never properly crosses it. The builder keeps new and dragged devices at least 5 cm off wall lines (it moves them 10 cm and tells you) and the Check tab flags existing cases — several reference rooms have them.</li>
+<li><strong>Doors are gaps.</strong> Links through a gap see no wall loss. The Door tool cuts a gap of the chosen width into a wall, turning it into two walls.</li>
+<li><strong>Double walls.</strong> Two parallel walls add both losses. Select a wall and press <em>Double</em> for a copy 20 cm away. Overlapping collinear walls also add both — the checker points them out in case it was an accident.</li>
+<li><strong>Walls on the room boundary change nothing</strong>: every device is inside the room. Exterior walls matter around gardens, courtyards or L-shaped footprints inside the room.</li>
+<li>Walls are band-independent in this model; real materials attenuate 5 and 6 GHz more than 2.4 GHz.</li>
+</ul>
+<h3>Precision drawing</h3>
+<ul>
+<li><strong>Plan</strong> view (<kbd>T</kbd>) is an exact orthographic top view; plan +y points up.</li>
+<li>Points snap to the grid (Room → Editing → Snap grid), to other wall ends, onto existing walls (T-junctions) and to the room edges. <kbd>Alt</kbd> disables snapping, <kbd>Shift</kbd> constrains to 15° steps.</li>
+<li>While drawing, type a length (e.g. <kbd>3</kbd><kbd>.</kbd><kbd>6</kbd>) and press <kbd>Enter</kbd> for a wall of exactly that length toward the cursor. Clicking the first point closes the outline.</li>
+<li>Select a wall to drag it, drag its purple end handles, or type start/end coordinates, length and angle in the properties panel.</li>
+</ul>
+</section>
+
+<section id="devices"><h2>Agents and clients</h2>
+<p>Every device is a <em>role</em>. In the lab each role is bound to a container: <code>gateway</code> → <code>bpibroadband</code> (Agent-1), <code>extender_1..4</code> → <code>bpiap…bpiap-003</code>, <code>sta_static_01..10</code> and <code>sta_mobile_01..10</code> → the twenty named clients, <code>sta_pool_021..100</code> → the 100-client pool. Roles are physical identities: moving <code>sta_static_03</code> moves the container bound to it; roles never follow association.</p>
+<ul>
+<li><kbd>E</kbd> adds an agent: the first is <code>gateway</code>, then <code>extender_1</code>, <code>extender_2</code>…</li>
+<li><kbd>C</kbd> adds a static client using the next free lab role; <kbd>Shift</kbd>-click adds a mobile one. <em>Add N clients</em> places many at once (grid, scattered, or clustered around the selection).</li>
+<li>The viewer colours clients by role name: purple only when the name contains <code>mobile</code>. A moving <code>sta_static_…</code> is legal (the band rooms do it) but is drawn dark.</li>
+<li><strong>Wired backhaul</strong> (<code>backhaul: "wired"</code>, agents only): the AP's LAN port is on the controller's LAN, so it needs no Wi-Fi backhaul. It still has AP-to-AP links and can be a Wi-Fi extender's backhaul parent; the lab gives those links RF only when the AP's own backhaul station never connects (<code>wired_guard</code>). The builder treats it as a root of the backhaul tree, like the gateway. The lab's wired extender is <code>extender_5</code> (<code>bpiap-004</code>).</li>
+<li><strong>Transmit adjustment</strong> (<code>tx_gain_db_by_band</code>) is added to every link the role transmits. A negative value on a client makes its uplink weaker than its downlink — an asymmetric link.</li>
+<li><strong>Park</strong> keeps a lab role in the room but never on air (<code>presence: []</code>). Use it for spare extenders in small homes: the lab requires every mesh role to be present in the world.</li>
+</ul>
+<h3>Optimal extender placement</h3>
+<p><strong>Devices → Place extenders optimally</strong> chooses positions for N extenders using the configurator's propagation model:</p>
+<ul>
+<li>Each sample point scores its best AP→point SNR on the chosen band with a utility that rises linearly from <em>target − 25 dB</em> to the <em>target</em> and keeps a small bonus above it. Samples are a floor grid, every client position over the whole scenario, or both with equal weight.</li>
+<li>Every placed extender must reach the gateway through Wi-Fi hops whose weaker direction is at least the backhaul threshold (default 20 dB on 5 GHz). Wired extenders and pods neither need nor provide such hops.</li>
+<li>Extenders keep 30 cm from walls and room edges and a minimum spacing between agents.</li>
+<li>Search: greedy selection over a candidate grid, candidate swaps, then pattern-search refinement down to the configurator's 5 cm quantum. It is deterministic.</li>
+<li><em>Replace</em> re-positions the existing extenders (keeping their roles); <em>Add</em> keeps every AP and adds new roles. The proposal is shown as purple ghosts with their backhaul hops; <em>Apply</em> writes it as one undo step.</li>
+</ul>
+<p>The <strong>heatmap</strong> (<kbd>H</kbd>) shows the same field: best AP→point SNR on the selected band, in the signal meter's bands (red &lt; 16 dB, yellow 16–35 dB, green ≥ 36 dB) or continuous. The cursor readout at the bottom left names the best AP and its SNR under the pointer.</p>
+</section>
+
+<section id="motion"><h2>Motion, presence and playback</h2>
+<h3>The script</h3>
+<ul>
+<li><code>duration_ms</code> must be a whole number of ticks; the builder rounds and says so.</li>
+<li><code>tick_ms</code> (100 ms – 60 s) is one RF generation. A fast walk with a long tick jumps between generations; the checker points this out.</li>
+<li><code>seed</code> selects the seeded shadowing sequence (only relevant when shadowing σ &gt; 0).</li>
+</ul>
+<h3>Paths</h3>
+<ul>
+<li><strong>Path tool</strong> (<kbd>P</kbd>): click a client, then click the floor; each waypoint's time is the distance divided by the walk speed. <kbd>Backspace</kbd> removes the last waypoint, <kbd>Enter</kbd> finishes. Clicking empty floor first creates a new mobile client. If the path runs past the end, the script is extended.</li>
+<li><strong>Keyframes</strong>: scrub to any time and drag a moving client — a waypoint is inserted at that time (or the existing one moved). <kbd>Alt</kbd>-drag moves the whole path.</li>
+<li>Selecting a mobile client shows its path with a purple ring and time label per waypoint; drag the rings. The Motion tab lists waypoints with editable times and coordinates.</li>
+<li><em>Retime at … m/s</em> makes the speed constant while keeping dwells; <em>Dwell +5 s</em> holds at a waypoint; <em>Templates</em> generate a room loop, a cross-and-back walk, a border hover (ping-pong test) or a seeded wander.</li>
+<li>Agents may move too (extender evacuation, backhaul parent handover): <em>Make movable</em>.</li>
+</ul>
+<p>Positions interpolate linearly between waypoints; after the last one the role holds still. The first waypoint is always at 0 s.</p>
+<h3>Presence</h3>
+<p>Presence is a list of half-open <code>[start, end)</code> spans when the role is on air. While absent, every link of the role is the SNR floor. For an extender this removes its fronthaul; the live lab keeps the container running. Use <em>Disappear/Appear from here</em>, <em>Always</em>, <em>Park</em>, or edit the spans.</p>
+<h3>Checkpoints and backhaul policy</h3>
+<ul>
+<li><code>pause_at_ms</code>: playback stops at each checkpoint — here and in the live room — so the optimizer can measure stable RF. They are viewer/room metadata; <code>.wmd</code> exports do not contain them.</li>
+<li><code>backhaul_rf</code>: <em>fixed</em> (default) keeps the lab's protected startup backhaul; <em>geometry</em> makes AP-to-AP RF follow the room during loading, playback and dragging, with native parent selection.</li>
+</ul>
+</section>
+
+<section id="scenario"><h2>Scenario metadata</h2>
+<ul>
+<li><strong>Band-steering profiles</strong> (<code>band_steering</code>): at most four initially present clients with <code>allowed_bands</code>, an <code>initial_band</code> among them and optionally <code>measurement_mode: "received_same_band"</code> (exactly one allowed band; the optimizer then uses AP→client passive reception).</li>
+<li><strong>Expectations</strong> (<code>band_steering_expectations</code>): signed checkpoints <code>{time_ms, roles: {role: {band, ap}}}</code> stating where profiled clients should end up. <em>+ at t</em> pre-fills the predicted best AP.</li>
+<li><strong>AP expectations</strong> (<code>ap_expectations</code>): which AP each named client must be on at the final settle or at a checkpoint, e.g. <code>[{"at": "final", "roles": {"sta_mobile_01": "extender_5"}}]</code>. Removing a checkpoint drops an expectation pinned to it.</li>
+<li><strong>Traffic experiment</strong> (<code>traffic_experiment</code>, schema <code>easymesh.room-traffic.v1</code>): 1–4 ordered phases inside the first 60 s, each ≤ 20 s, from an initially present client, payload 64–1200 bytes; ICMP 1–200 packets/s or UDP 0.1–12 Mbps with at most 2000 datagrams/s.</li>
+<li><strong>Room guide</strong>: the four texts of the viewer's “Browse rooms · RF &amp; optimizer guide” (Simulated RF, Expected optimizer behavior, Evidence to check, What this does not prove). The lab bundle includes them as a room-guide entry.</li>
+</ul>
+</section>
+
+<section id="rf"><h2>The RF model</h2>
+<p>For band <em>b</em>, the directed link from <em>source</em> to <em>destination</em> at a tick is</p>
+<pre><code>clamp( round( reference_snr[b]
+              − 10 · n · log10( max(d, d0) / d0 )
+              − Σ loss of walls the straight path properly crosses
+              + source transmit adjustment[b]
+              + seeded shadowing(seed, tick, unordered pair, band, σ) ),
+       floor, ceiling )</code></pre>
+<ul>
+<li><code>round</code> is Python's round-half-to-even: 42.5 → 42, 43.5 → 44. The browser model reproduces it.</li>
+<li>Closer than the reference distance <em>d0</em> there is no path loss.</li>
+<li>An absent role has the floor value on all its links.</li>
+<li>Presets: <em>Home/office</em> 54/50/47 dB at 1 m, n = 2.2 (every home, lane and large-room reference layout); <em>Courtyard</em> 52/48/45 dB, n = 2.8 (the backhaul rooms); <em>Open hall</em> n = 2.0; <em>Dense office</em> n = 3.0.</li>
+<li>The live preview (links, gauges, heatmap, link table) is exact except for shadowing, which is a zero-mean seeded term applied only in the compiled world.</li>
+<li>Signal colours use the viewer's meter with a fixed −91 dBm noise reference: red below 16 dB, yellow 16–35 dB, green from 36 dB.</li>
+</ul>
+</section>
+
+<section id="checks"><h2>Checking a room</h2>
+<h3>Live findings</h3>
+<p>Every change is linted on the server: configurator errors (what <code>world-compile</code> would reject, with the offending role or wall selected on click), lab admission problems for the chosen profile, and pitfalls the configurator accepts silently: devices on wall lines, walking along a wall, stacked walls, fast motion for the tick, early-stopping paths, coverage holes (&lt; 10 dB), weak extender backhaul, rooms smaller than the viewer's 20 × 14 m default, moving clients that the viewer will colour as static.</p>
+<h3>The verification suite</h3>
+<table><tr><th>Check</th><th>What it proves</th></tr>
+<tr><td>configurator.layout / mobility</td><td>the documents pass wmdcfg's validation</td></tr>
+<tr><td>configurator.compile</td><td>world-compile produces a plan</td></tr>
+<tr><td>configurator.verify</td><td>verify_world_plan accepts the golden hash</td></tr>
+<tr><td>configurator.deterministic</td><td>a second compile is identical</td></tr>
+<tr><td>configurator.number-normalisation</td><td>an int/float rewrite keeps the golden hash</td></tr>
+<tr><td>configurator.links</td><td>every generation has every directed AP/client and mesh-peer link, all bands, SNR in [−20, 60]</td></tr>
+<tr><td>configurator.bounds</td><td>every role stays inside the room at every tick</td></tr>
+<tr><td>wmd.2.4 / 5 / 6 / all</td><td>world-export output parses and validates with the .wmd language rules</td></tr>
+<tr><td>scenario.traffic / band-steering / expectations</td><td>the metadata meets the live room's bounds</td></tr>
+<tr><td>design.roundtrip</td><td>design → layout/mobility → design is lossless</td></tr>
+<tr><td>lab.&lt;profile&gt;</td><td>the live room would admit the world (roles bound, every mesh role present, gateway on air, clients online, pool limits)</td></tr>
+<tr><td>rf.wall-geometry, rf.coverage</td><td>advisory: wall-line pitfalls, coverage holes, weak backhaul</td></tr>
+<tr><td>reference.golden</td><td>reference library rooms reproduce the reference golden_sha256</td></tr>
+<tr><td>reference.compile / export</td><td>with <code>--reference</code>: the reference wmdcfg produces the same bytes</td></tr></table>
+<h3>Lab profiles</h3>
+<table><tr><th>Profile</th><th>Mesh roles</th></tr>
+<tr><td>Configurator only</td><td>any: only the configurator's own rules apply</td></tr>
+<tr><td>RDK lab · 5 native agents</td><td>gateway, extender_1..4</td></tr>
+<tr><td>RDK lab + wired extender_5</td><td>… + extender_5 with <code>backhaul: "wired"</code></td></tr>
+<tr><td>RDK lab + 2 OpenSync pods</td><td>… + pod_1, pod_2 (2.4 GHz only)</td></tr>
+<tr><td>RDK lab + pods + wired</td><td>all of the above</td></tr></table>
+<p>Clients must use bound roles (<code>sta_static_01..10</code>, <code>sta_mobile_01..10</code>, <code>sta_pool_021..100</code>), at most 100, and an even number when the pool is used (private/IoT cohorts).</p>
+</section>
+
+<section id="language"><h2>Configurator language reference</h2>
+<h3>Layout — <code>wmdcfg.world-layout.v1</code></h3>
+<div class="table-wrap"><table><tr><th>Field</th><th>Rule</th></tr>
+<tr><td><code>name</code></td><td>non-empty; for the lab 1–100 of <code>[a-zA-Z0-9_-]</code></td></tr>
+<tr><td><code>tags</code></td><td>merged with the mobility tags into the world</td></tr>
+<tr><td><code>space.width_m</code>, <code>space.height_m</code></td><td>&gt; 0</td></tr>
+<tr><td><code>propagation.reference_snr_db_by_band</code></td><td>exactly the bands 2.4, 5, 6</td></tr>
+<tr><td><code>propagation.reference_distance_m</code>, <code>path_loss_exponent</code></td><td>&gt; 0</td></tr>
+<tr><td><code>propagation.shadowing_stddev_db</code></td><td>σ of seeded shadowing (0 = deterministic)</td></tr>
+<tr><td><code>propagation.minimum_snr_db</code>, <code>maximum_snr_db</code></td><td>integers inside [−20, 60], floor ≤ ceiling</td></tr>
+<tr><td><code>walls[]</code></td><td><code>start</code> ≠ <code>end</code>, both inside the room, <code>loss_db</code> ≥ 0, optional <code>name</code></td></tr>
+<tr><td><code>nodes[]</code></td><td>unique <code>role</code> matching <code>[A-Za-z_][A-Za-z0-9_-]*</code>, <code>kind</code> station | fronthaul_ap, <code>position</code> inside the room, optional <code>backhaul: "wired"</code> (agents) and <code>tx_gain_db_by_band</code>; at least one agent</td></tr></table></div>
+<h3>Mobility — <code>wmdcfg.mobility.v1</code></h3>
+<div class="table-wrap"><table><tr><th>Field</th><th>Rule</th></tr>
+<tr><td><code>name</code>, <code>tags</code>, <code>seed</code></td><td>name non-empty</td></tr>
+<tr><td><code>duration_ms</code>, <code>tick_ms</code></td><td>duration &gt; 0 and a multiple of the tick; tick 100–60000 ms</td></tr>
+<tr><td><code>nodes[]</code></td><td>merged over the layout node with the same role (or a new role, kind defaults to station); a <code>path</code> of <code>{time_ms, position}</code> starting at 0, ascending, unique, ending ≤ duration — or a <code>position</code>; optional <code>presence</code> spans, <code>kind</code>, <code>tx_gain_db_by_band</code></td></tr>
+<tr><td><code>pause_at_ms</code></td><td>ordered unique integers strictly inside the duration</td></tr>
+<tr><td><code>backhaul_rf</code></td><td>fixed | geometry</td></tr>
+<tr><td><code>band_steering</code>, <code>band_steering_expectations</code>, <code>traffic_experiment</code></td><td>see Scenario metadata; copied into the world</td></tr>
+<tr><td><code>ap_expectations</code></td><td>non-empty list of <code>{at: "final" | a pause_at_ms time, roles: {station: fronthaul_ap}}</code>, one entry per <code>at</code>; validated and copied into the world</td></tr></table></div>
+<h3>World plan — <code>wmdcfg.world-plan.v1</code></h3>
+<p>Compiled output: <code>name</code> (<code>layout--mobility</code>), <code>layout_sha256</code>, <code>mobility_sha256</code>, <code>tick_ms</code>, <code>duration_ms</code>, <code>bands</code>, <code>counts</code>, <code>roles</code>, <code>wired_backhaul</code>, <code>walls</code>, the metadata above and one generation per tick with <code>positions</code> (1 mm), <code>present</code> and every directed link (<code>link_class</code>, <code>distance_m</code>, <code>wall_loss_db</code>, <code>snr_db_by_band</code>), plus <code>golden_sha256</code> over the canonical JSON. It does not record the room size or propagation.</p>
+<h3>The .wmd phase language</h3>
+<table><tr><th>Construct</th><th>Meaning</th></tr>
+<tr><td><code>tick</code></td><td>ramp sample interval, 100 ms to 60 s</td></tr>
+<tr><td><code>role name : station | fronthaul_ap</code></td><td>a binding to a lab container</td></tr>
+<tr><td><code>phase name for 10s { … }</code></td><td>fixed duration</td></tr>
+<tr><td><code>parallel { … }</code></td><td>one atomic generation</td></tr>
+<tr><td><code>link a -&gt; | &lt;- | &lt;-&gt; b [band 5GHz] snr = 42dB</code></td><td>directed or symmetric SNR, optionally frequency-qualified</td></tr>
+<tr><td><code>snr 42dB -&gt; 10dB linear</code></td><td>sampled ramp</td></tr>
+<tr><td><code>hold</code>, <code>mark "text"</code></td><td>keep the matrix; annotate</td></tr>
+<tr><td><code>require</code> radio_pair_snr | frequency_qualified_snr | atomic_generations | readback</td><td>capabilities</td></tr>
+<tr><td><code>protect backhaul</code>, <code>restore captured</code></td><td>mandatory in language 1</td></tr></table>
+<p>The builder's exports are parsed back and validated with a port of the reference parser; with <code>--reference</code> they are also compared with the reference exporter.</p>
+</section>
+
+<section id="lab"><h2>Taking a room into the lab</h2>
+<ol>
+<li>Export the <strong>Lab bundle</strong> and unzip it.</li>
+<li>Copy <code>worlds/layouts/*.json</code>, <code>worlds/mobility/*.json</code> and <code>worlds/golden/*.world.json</code> into <code>gen/wmediumd/configurator/worlds/</code> of the reference repository.</li>
+<li>Add the line from <code>build-goldens.emit</code> to <code>worlds/build-goldens.sh</code> and run <code>worlds/build-goldens.sh --check</code>: it recompiles the room from its sources and must find the same bytes.</li>
+<li>Optionally add <code>room-guide-entry.js</code> to the viewer's <code>room-guide.js</code> and the world ID to the viewer's list, then load it in the room like any golden world.</li>
+</ol>
+<div class="note attention">The live room binds roles to containers: use a lab profile while designing and keep the Check badge green. More than 20 clients need a lab provisioned with the 100-client pool.</div>
+</section>
+
+<section id="keys"><h2>Keyboard and mouse</h2>
+<table><tr><th>Keys</th><th>Action</th></tr>
+<tr><td><kbd>V</kbd> <kbd>W</kbd> <kbd>R</kbd> <kbd>D</kbd> <kbd>E</kbd> <kbd>C</kbd> <kbd>P</kbd> <kbd>M</kbd></td><td>Select, Wall, Box, Door, Agent, Client, Path, Measure</td></tr>
+<tr><td><kbd>3</kbd> <kbd>T</kbd> <kbd>G</kbd></td><td>3D orbit, Plan, Walk-through</td></tr>
+<tr><td><kbd>F</kbd> · <kbd>H</kbd> · <kbd>B</kbd></td><td>fit · heatmap · next band</td></tr>
+<tr><td><kbd>Space</kbd> · <kbd>[</kbd> <kbd>]</kbd> · <kbd>Home</kbd> <kbd>End</kbd></td><td>play/pause · one tick back/forward · start/end</td></tr>
+<tr><td><kbd>Delete</kbd> · <kbd>Ctrl</kbd>+<kbd>D</kbd> · arrows</td><td>delete · duplicate device · nudge by the snap (<kbd>Shift</kbd> ×10)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>undo / redo (drags are one step)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd>, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>, <kbd>Ctrl</kbd>+<kbd>O</kbd>, <kbd>Ctrl</kbd>+<kbd>E</kbd></td><td>save, save as, open, export</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>finish drawing, leave walk view, then clear the selection</td></tr>
+<tr><td>mouse</td><td>drag empty space to orbit, <kbd>Shift</kbd>-drag or middle-drag to pan, wheel to zoom, right-click for actions; in Plan, drag pans and the wheel zooms around the cursor</td></tr>
+<tr><td>Walk view</td><td><kbd>W</kbd>/<kbd>A</kbd>/<kbd>S</kbd>/<kbd>D</kbd> or arrows to move and turn, drag to look, wheel to step</td></tr></table>
+</section>
+
+<section id="cli"><h2>Command line and API</h2>
+<pre><code>./room-builder serve [--port 8790] [--data designs/] [--reference /path/to/meta-cmf-bananapi-vcpe]
+./room-builder verify ROOM [--profile rdk-lab] [--reference PATH] [--json]
+./room-builder compile ROOM -o room.world.json [--pretty]
+./room-builder export ROOM --format layout|mobility|world|wmd|bundle|svg|dxf|design [--band all] -o OUT
+./room-builder place ROOM --count 4 [--band 5] [--strategy replace|add] -o placed.design.json
+./room-builder library [--check] [--export DIR]</code></pre>
+<p><code>ROOM</code> is a design file, a layout (plus mobility) file, a compiled <code>.world.json</code>, or a library room id. The JSON API behind the UI is listed in the README (<code>/api/lint</code>, <code>/api/compile</code>, <code>/api/verify</code>, <code>/api/place</code>, <code>/api/coverage</code>, <code>/api/import</code>, <code>/api/export/&lt;kind&gt;</code>, <code>/api/designs…</code>, <code>/api/library…</code>).</p>
+</section>
+
+<section id="limits"><h2>Limits</h2>
+<ul>
+<li>One floor per room (no multi-storey propagation), straight walls, band-independent wall loss — exactly what the configurator models.</li>
+<li>The preview omits seeded shadowing; the compiled world includes it.</li>
+<li>The optimizer maximises modelled coverage with a signal-only backhaul guard; it does not model capacity, channel planning or interference.</li>
+<li>Nothing here proves steering: the lab's native software and optimizer decide associations once the room is loaded.</li>
+</ul>
+</section>
+</main>
+</div>
+<footer>EasyMesh room builder · compiles with the wmdcfg Golden World model of boardfarmdevs/meta-cmf-bananapi-vcpe.</footer>
+<script>
+(function () {
+  const sections = [...document.querySelectorAll('main section')];
+  const toc = document.getElementById('toc');
+  for (const s of sections) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + s.id; a.textContent = s.querySelector('h2').textContent;
+    li.append(a); li.dataset.target = s.id; toc.append(li);
+  }
+  const input = document.getElementById('search'), status = document.getElementById('searchStatus');
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const s of sections) {
+      const hit = !q || s.textContent.toLowerCase().includes(q);
+      s.hidden = !hit; toc.querySelector(`[data-target="${s.id}"]`).hidden = !hit; shown += hit;
+    }
+    status.textContent = q ? `${shown} section${shown === 1 ? '' : 's'} match` : '';
+  });
+})();
+</script>
+</body>
+</html>

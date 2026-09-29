@@ -1,0 +1,533 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "home-b-slow-walk-ten",
+  "title": "Home B · Ten Slow Walkers",
+  "description": "The same ten-walker/ten-reference workload uses shifted AP geometry in Home B. Changed distances and wall crossings alter eligible serving opportunities relative to Home A.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "home-five-agent-shifted",
+    "tags": [
+      "home",
+      "five-agent",
+      "layout-b",
+      "walls",
+      "static-10"
+    ],
+    "space": {
+      "width_m": 20,
+      "height_m": 14
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "hall-west",
+        "start": [
+          6,
+          0
+        ],
+        "end": [
+          6,
+          9
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "hall-east",
+        "start": [
+          14,
+          5
+        ],
+        "end": [
+          14,
+          14
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "bedroom",
+        "start": [
+          0,
+          9
+        ],
+        "end": [
+          9,
+          9
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "office",
+        "start": [
+          11,
+          5
+        ],
+        "end": [
+          20,
+          5
+        ],
+        "loss_db": 5
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          7
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          10,
+          2
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          17,
+          3
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          9,
+          12
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          18,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          1,
+          1
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          4,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          8,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          12,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          19,
+          1
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          1,
+          13
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          5,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          10,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          15,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          19,
+          13
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "slow-walk-ten",
+    "tags": [
+      "slow-walk",
+      "mobile-10",
+      "clients-20"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 2000,
+    "seed": 1702,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              1,
+              2
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              2
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              19,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              19,
+              3
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              3
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              1,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_03",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              13
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              7
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              18,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_04",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              18,
+              13
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              7
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_05",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              3,
+              5
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              5
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              17,
+              5
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_06",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              17,
+              9
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              10,
+              9
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              3,
+              9
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_07",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              6,
+              1
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              6,
+              7
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              6,
+              13
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_08",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              14,
+              13
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              14,
+              7
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              14,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_09",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              1,
+              7
+            ]
+          },
+          {
+            "time_ms": 20000,
+            "position": [
+              7,
+              7
+            ]
+          },
+          {
+            "time_ms": 40000,
+            "position": [
+              13,
+              7
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              19,
+              7
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_10",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              10,
+              1
+            ]
+          },
+          {
+            "time_ms": 20000,
+            "position": [
+              10,
+              5
+            ]
+          },
+          {
+            "time_ms": 40000,
+            "position": [
+              10,
+              9
+            ]
+          },
+          {
+            "time_ms": 60000,
+            "position": [
+              10,
+              13
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "interior",
+      "interior",
+      "interior",
+      "interior"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Home B · Ten Slow Walkers",
+      "rf": "The same ten-walker/ten-reference workload uses shifted AP geometry in Home B. Changed distances and wall crossings alter eligible serving opportunities relative to Home A.",
+      "optimizer": "Re-evaluate clients against the new geometry instead of carrying over old AP assumptions. Make independent policy-qualified decisions for each moving client and settle the full roster.",
+      "watch": "Compare serving choices and fresh candidate margins with Home A. Verify all twenty native associations and traffic at the end, and compare the actual backhaul tree with the configured policy.",
+      "limits": "Shifted or chain-like geometry does not require a chain topology. Protected startup backhaul can remain unchanged; this room primarily tests client-serving decisions, not automatic extender-parent steering."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/home-b-slow-walk-ten.world.json",
+    "layout": "home-five-agent-shifted",
+    "mobility": "slow-walk-ten",
+    "layout_sha256": "466d0be674baedecc4b59d9634e5bd73abc7edaac18726bcf6c64b772f7bb187",
+    "mobility_sha256": "7c6b02d18eaeddab62f3d2a720930181a4d5c0a3b68d1f4fee605eb75a921585",
+    "golden_sha256": "65f51ea7776d816d3999fc4c9986b60431a33d9cff3cf82634df8ce3c6f8b7c5"
+  },
+  "library": {
+    "category": "reference",
+    "order": 4,
+    "highlights": [
+      "4 walls",
+      "10 moving"
+    ]
+  }
+}

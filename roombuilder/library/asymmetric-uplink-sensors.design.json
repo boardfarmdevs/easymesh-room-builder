@@ -1,0 +1,272 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "asymmetric-uplink-sensors",
+  "title": "Weak-uplink IoT sensors",
+  "description": "Four battery sensors transmit 15–20 dB weaker than they receive. Their downlink looks healthy while the AP barely hears them.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "asymmetric-uplink-sensors",
+    "tags": [
+      "asymmetric",
+      "iot",
+      "stress"
+    ],
+    "space": {
+      "width_m": 20,
+      "height_m": 14
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "hall-west",
+        "start": [
+          7.0,
+          0.0
+        ],
+        "end": [
+          7.0,
+          9.0
+        ],
+        "loss_db": 5
+      },
+      {
+        "name": "hall-east",
+        "start": [
+          13.0,
+          5.0
+        ],
+        "end": [
+          13.0,
+          14.0
+        ],
+        "loss_db": 5
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          10,
+          7
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          17.05,
+          3.35
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          4.9,
+          11.25
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          14.7,
+          7.15
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          4.0,
+          3.65
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          4,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          17,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          18,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          10,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          10,
+          12.5
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          1.5,
+          7
+        ],
+        "tx_gain_db_by_band": {
+          "2.4": -15,
+          "5": -18,
+          "6": -20
+        }
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          18.5,
+          7
+        ],
+        "tx_gain_db_by_band": {
+          "2.4": -15,
+          "5": -18,
+          "6": -20
+        }
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          5,
+          3.5
+        ],
+        "tx_gain_db_by_band": {
+          "2.4": -15,
+          "5": -18,
+          "6": -20
+        }
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          15,
+          10.5
+        ],
+        "tx_gain_db_by_band": {
+          "2.4": -15,
+          "5": -18,
+          "6": -20
+        }
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "weak-uplink",
+    "tags": [
+      "asymmetric",
+      "mobile-1"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "tx_gain_db_by_band": {
+          "2.4": -8,
+          "5": -10,
+          "6": -12
+        },
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              12
+            ]
+          },
+          {
+            "time_ms": 16500,
+            "position": [
+              10,
+              10
+            ]
+          },
+          {
+            "time_ms": 37800,
+            "position": [
+              18,
+              3
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "interior",
+      "interior"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Weak-uplink IoT sensors",
+      "rf": "tx_gain_db_by_band lowers every link the sensors transmit (uplink) while AP→sensor links keep the geometric value, so each pair has two different SNRs.",
+      "optimizer": "Policies that rank by downlink RCPI alone will pick APs that cannot hear the sensor; uplink-aware policy should prefer closer APs.",
+      "watch": "Click a sensor: the inspector lists both directions per band.",
+      "limits": "A scenario SNR offset, not native transmit-power control."
+    }
+  },
+  "library": {
+    "category": "stress",
+    "order": 4,
+    "highlights": [
+      "2 walls",
+      "1 moving",
+      "asymmetric uplink"
+    ]
+  }
+}

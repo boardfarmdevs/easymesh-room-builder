@@ -1,0 +1,334 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "backhaul-isolation-recovery",
+  "title": "Backhaul · Isolation / Recovery",
+  "description": "Extender_4 and sta_static_10 travel behind a 70 dB isolation wall during 2–8 s, remain there through 16 s and return by 22 s. At 12 s all its modeled mesh-peer links reach −20 dB, but its nearby client retains a strong fronthaul link.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "backhaul-courtyard",
+    "tags": [
+      "backhaul",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "space": {
+      "width_m": 64,
+      "height_m": 36
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 48,
+        "6": 45,
+        "2.4": 52
+      },
+      "path_loss_exponent": 2.8,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "courtyard-partition",
+        "start": [
+          30,
+          11
+        ],
+        "end": [
+          30,
+          25
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "isolation-wall",
+        "start": [
+          48,
+          0
+        ],
+        "end": [
+          48,
+          36
+        ],
+        "loss_db": 70
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          18
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          28
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          10
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          26
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          7,
+          17
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          19
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          21,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          23,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          21,
+          27
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          23,
+          29
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          18
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          8,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          13,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          13,
+          26
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "backhaul-isolation-recovery",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "backhaul_rf": "geometry",
+    "duration_ms": 24000,
+    "tick_ms": 1000,
+    "pause_at_ms": [
+      12000
+    ],
+    "seed": 1914,
+    "nodes": [
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 8000,
+            "position": [
+              58,
+              28
+            ]
+          },
+          {
+            "time_ms": 16000,
+            "position": [
+              58,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              12,
+              26
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 8000,
+            "position": [
+              59,
+              28
+            ]
+          },
+          {
+            "time_ms": 16000,
+            "position": [
+              59,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              13,
+              26
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "concrete",
+      "isolation"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Backhaul · Isolation / Recovery",
+      "rf": "Extender_4 and sta_static_10 travel behind a 70 dB isolation wall during 2–8 s, remain there through 16 s and return by 22 s. At 12 s all its modeled mesh-peer links reach −20 dB, but its nearby client retains a strong fronthaul link.",
+      "optimizer": "Observe an actual upstream outage and native recovery, not a fronthaul-disable command. Client policy must not claim successful end-to-end service from strong local RSSI or stale controller ownership while the uplink is isolated.",
+      "watch": "At the pause verify applied RF, physical uplink state, failed gateway traffic and how both views report missing/stale evidence. Resume and verify native association, fresh topology and traffic after the return; an immediate disconnect indication is not guaranteed.",
+      "limits": "All containers stay running. Strong fronthaul does not imply a working backhaul. Expected outage observations are not generic room-health failures, but failure to recover within the stated test window must remain a separate reported deficiency."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/backhaul-isolation-recovery.world.json",
+    "layout": "backhaul-courtyard",
+    "mobility": "backhaul-isolation-recovery",
+    "layout_sha256": "cb9fe38477e3d55ddb27ce7f3caacebc329f219197870a23eed68bcf497e0428",
+    "mobility_sha256": "f9e30cb8b25d797942371532c3f87766d6fdca6df86ce8feab2cea8ac8bfe3f6",
+    "golden_sha256": "c6f100d9e9d9d5a6c4bdaf2d5425e2a3fa8e0c8782362b61321aaa5f145f3595"
+  },
+  "library": {
+    "category": "reference",
+    "order": 26,
+    "highlights": [
+      "2 walls",
+      "2 moving",
+      "checkpoints",
+      "geometry backhaul"
+    ]
+  }
+}

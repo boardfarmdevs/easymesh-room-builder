@@ -1,0 +1,358 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "backhaul-wired-parent",
+  "title": "Backhaul · Wired Extender as Parent",
+  "description": "Geometry backhaul in the branches courtyard with extender_5 wired at (60, 18), east of the 70 dB isolation wall. extender_3 and a nearby client move to (54, 14) during 2–10 s, pause at 12 s and return by 22 s: behind the wall only extender_5 is a usable backhaul parent.",
+  "profile": "rdk-lab-wired",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "backhaul-branches-wired",
+    "tags": [
+      "backhaul",
+      "native-parent-selection",
+      "quick-demo",
+      "wired-extender"
+    ],
+    "space": {
+      "width_m": 64,
+      "height_m": 36
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 48,
+        "6": 45,
+        "2.4": 52
+      },
+      "path_loss_exponent": 2.8,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "courtyard-partition",
+        "start": [
+          30,
+          11
+        ],
+        "end": [
+          30,
+          25
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "isolation-wall",
+        "start": [
+          48,
+          0
+        ],
+        "end": [
+          48,
+          36
+        ],
+        "loss_db": 70
+      },
+      {
+        "name": "branch-divider",
+        "start": [
+          31,
+          18
+        ],
+        "end": [
+          46,
+          18
+        ],
+        "loss_db": 12
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          18
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          28
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          10
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          26
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          7,
+          17
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          19
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          21,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          23,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          21,
+          27
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          23,
+          29
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          18
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          8,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          13,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          13,
+          26
+        ]
+      },
+      {
+        "role": "extender_5",
+        "kind": "fronthaul_ap",
+        "position": [
+          60,
+          18
+        ],
+        "backhaul": "wired"
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "backhaul-wired-parent",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "native-parent-selection",
+      "wired-extender"
+    ],
+    "backhaul_rf": "geometry",
+    "duration_ms": 24000,
+    "tick_ms": 1000,
+    "pause_at_ms": [
+      12000
+    ],
+    "seed": 2104,
+    "nodes": [
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              54,
+              14
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              54,
+              14
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              12,
+              10
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              55,
+              14
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              55,
+              14
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              13,
+              10
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "concrete",
+      "isolation",
+      "concrete"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Backhaul · Wired Extender as Parent",
+      "rf": "Geometry backhaul in the branches courtyard with extender_5 wired at (60, 18), east of the 70 dB isolation wall. extender_3 and a nearby client move to (54, 14) during 2–10 s, pause at 12 s and return by 22 s: behind the wall only extender_5 is a usable backhaul parent.",
+      "optimizer": "Native parent selection should reparent extender_3 to the wired extender while it is east of the wall, then back after the return.",
+      "watch": "At the 12 s pause compare applied AP-to-AP SNR with extender_3's actual parent.",
+      "limits": "Needs the lab's wired_guard so the wired AP's own backhaul station never connects."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds-wired/golden/backhaul-wired-parent.world.json",
+    "layout": "backhaul-branches-wired",
+    "mobility": "backhaul-wired-parent",
+    "layout_sha256": "67bbb5c1e0017c91ec0422529c8bd49a4e39268863e25c80e0cd36dd41f3de0a",
+    "mobility_sha256": "56cf8bfccd19bb1e7f428d488c60e59b1a570043f7dac4f6bc25727345b5fd5e",
+    "golden_sha256": "7a4731c1f8f70c53c7c72b92dc3326b466364f7bdf1fc7e49e99646ec5348af5"
+  },
+  "library": {
+    "category": "reference",
+    "order": 30,
+    "highlights": [
+      "3 walls",
+      "2 moving",
+      "checkpoints",
+      "geometry backhaul",
+      "wired backhaul"
+    ]
+  }
+}

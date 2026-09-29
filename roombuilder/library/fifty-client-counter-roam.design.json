@@ -1,0 +1,623 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "fifty-client-counter-roam",
+  "title": "Fifty Client Counter-Roam",
+  "description": "Fifty clients in a large room: two walkers exchange Ext-1/Ext-2 regions during 6–12 s and return during 24–30 s. Forty-eight reference clients stay fixed. Distance and band-dependent link budgets change for the walkers.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "large-room-fifty-clients",
+    "tags": [
+      "large-room",
+      "50-clients",
+      "unified-capacity"
+    ],
+    "space": {
+      "width_m": 40,
+      "height_m": 40
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          4
+        ]
+      },
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          20
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          36
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          36
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2.9,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          34.9,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          18.9,
+          18.35
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          2.9,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          34.9,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          4,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          36,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          20,
+          18.35
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          4,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          36,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_mobile_01",
+        "kind": "station",
+        "position": [
+          5.1,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "kind": "station",
+        "position": [
+          37.1,
+          2.3499999999999996
+        ]
+      },
+      {
+        "role": "sta_mobile_03",
+        "kind": "station",
+        "position": [
+          21.1,
+          18.35
+        ]
+      },
+      {
+        "role": "sta_mobile_04",
+        "kind": "station",
+        "position": [
+          5.1,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_mobile_05",
+        "kind": "station",
+        "position": [
+          37.1,
+          34.35
+        ]
+      },
+      {
+        "role": "sta_mobile_06",
+        "kind": "station",
+        "position": [
+          2.9,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_mobile_07",
+        "kind": "station",
+        "position": [
+          34.9,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_mobile_08",
+        "kind": "station",
+        "position": [
+          18.9,
+          19.45
+        ]
+      },
+      {
+        "role": "sta_mobile_09",
+        "kind": "station",
+        "position": [
+          2.9,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_mobile_10",
+        "kind": "station",
+        "position": [
+          34.9,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_pool_021",
+        "kind": "station",
+        "position": [
+          4,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_pool_022",
+        "kind": "station",
+        "position": [
+          36,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_pool_023",
+        "kind": "station",
+        "position": [
+          20,
+          19.45
+        ]
+      },
+      {
+        "role": "sta_pool_024",
+        "kind": "station",
+        "position": [
+          4,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_pool_025",
+        "kind": "station",
+        "position": [
+          36,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_pool_026",
+        "kind": "station",
+        "position": [
+          5.1,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_pool_027",
+        "kind": "station",
+        "position": [
+          37.1,
+          3.45
+        ]
+      },
+      {
+        "role": "sta_pool_028",
+        "kind": "station",
+        "position": [
+          21.1,
+          19.45
+        ]
+      },
+      {
+        "role": "sta_pool_029",
+        "kind": "station",
+        "position": [
+          5.1,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_pool_030",
+        "kind": "station",
+        "position": [
+          37.1,
+          35.45
+        ]
+      },
+      {
+        "role": "sta_pool_031",
+        "kind": "station",
+        "position": [
+          2.9,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_032",
+        "kind": "station",
+        "position": [
+          34.9,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_033",
+        "kind": "station",
+        "position": [
+          18.9,
+          20.55
+        ]
+      },
+      {
+        "role": "sta_pool_034",
+        "kind": "station",
+        "position": [
+          2.9,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_035",
+        "kind": "station",
+        "position": [
+          34.9,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_036",
+        "kind": "station",
+        "position": [
+          4,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_037",
+        "kind": "station",
+        "position": [
+          36,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_038",
+        "kind": "station",
+        "position": [
+          20,
+          20.55
+        ]
+      },
+      {
+        "role": "sta_pool_039",
+        "kind": "station",
+        "position": [
+          4,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_040",
+        "kind": "station",
+        "position": [
+          36,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_041",
+        "kind": "station",
+        "position": [
+          5.1,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_042",
+        "kind": "station",
+        "position": [
+          37.1,
+          4.55
+        ]
+      },
+      {
+        "role": "sta_pool_043",
+        "kind": "station",
+        "position": [
+          21.1,
+          20.55
+        ]
+      },
+      {
+        "role": "sta_pool_044",
+        "kind": "station",
+        "position": [
+          5.1,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_045",
+        "kind": "station",
+        "position": [
+          37.1,
+          36.55
+        ]
+      },
+      {
+        "role": "sta_pool_046",
+        "kind": "station",
+        "position": [
+          2.9,
+          5.65
+        ]
+      },
+      {
+        "role": "sta_pool_047",
+        "kind": "station",
+        "position": [
+          34.9,
+          5.65
+        ]
+      },
+      {
+        "role": "sta_pool_048",
+        "kind": "station",
+        "position": [
+          18.9,
+          21.65
+        ]
+      },
+      {
+        "role": "sta_pool_049",
+        "kind": "station",
+        "position": [
+          2.9,
+          37.65
+        ]
+      },
+      {
+        "role": "sta_pool_050",
+        "kind": "station",
+        "position": [
+          34.9,
+          37.65
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "fifty-client-counter-roam",
+    "tags": [
+      "50-clients",
+      "quick-demo",
+      "counter-roam",
+      "unified-capacity"
+    ],
+    "duration_ms": 36000,
+    "tick_ms": 6000,
+    "seed": 191350,
+    "pause_at_ms": [
+      18000
+    ],
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 6000,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 12000,
+            "position": [
+              35,
+              5
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              35,
+              5
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 36000,
+            "position": [
+              5,
+              5
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_pool_022",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              35,
+              5
+            ]
+          },
+          {
+            "time_ms": 6000,
+            "position": [
+              35,
+              5
+            ]
+          },
+          {
+            "time_ms": 12000,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              5,
+              5
+            ]
+          },
+          {
+            "time_ms": 30000,
+            "position": [
+              35,
+              5
+            ]
+          },
+          {
+            "time_ms": 36000,
+            "position": [
+              35,
+              5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Fifty Client Counter-Roam",
+      "rf": "Fifty clients in a large room: two walkers exchange Ext-1/Ext-2 regions during 6–12 s and return during 24–30 s. Forty-eight reference clients stay fixed. Distance and band-dependent link budgets change for the walkers.",
+      "optimizer": "Evaluate both walkers independently and steer to eligible serving APs as their link advantage changes. Reference clients may settle after loading, but should not keep churning.",
+      "watch": "At the 18 s pause verify the exchanged serving regions; at 36 s verify the return. Both views should show exactly 50 online clients, not the other 50 provisioned stations. Restore default 20 should preserve all container and radio identities.",
+      "limits": "Demonstrates roster scaling and concurrent roaming, not a 50-client throughput or channel-utilization benchmark. More associated clients do not by themselves impose controlled traffic load."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/fifty-client-counter-roam.world.json",
+    "layout": "large-room-fifty-clients",
+    "mobility": "fifty-client-counter-roam",
+    "layout_sha256": "7a8820e42924f1512ff8beafffb6ed3a5e5403825d6e49ad02076511e27a0795",
+    "mobility_sha256": "0a13266ef6cfb8394090601952050b075cb551b1de960a63020b912654e36510",
+    "golden_sha256": "49eead3941837e2fdf6fffe3b378f244e7c585c67e374bb066f37b96fc96f30e"
+  },
+  "library": {
+    "category": "reference",
+    "order": 14,
+    "highlights": [
+      "2 moving",
+      "checkpoints"
+    ]
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "backhaul-parent-handover",
+  "title": "Backhaul · Parent Handover",
+  "description": "Extender_3 moves from the upper relay region near extender_1 to the lower region near extender_2, then returns. sta_static_09 follows one metre beside it, keeping their local fronthaul strong while upstream opportunities change.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "backhaul-courtyard",
+    "tags": [
+      "backhaul",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "space": {
+      "width_m": 64,
+      "height_m": 36
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 48,
+        "6": 45,
+        "2.4": 52
+      },
+      "path_loss_exponent": 2.8,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "courtyard-partition",
+        "start": [
+          30,
+          11
+        ],
+        "end": [
+          30,
+          25
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "isolation-wall",
+        "start": [
+          48,
+          0
+        ],
+        "end": [
+          48,
+          36
+        ],
+        "loss_db": 70
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          18
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          28
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          10
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          26
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          7,
+          17
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          19
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          21,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          23,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          21,
+          27
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          23,
+          29
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          18
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          8,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          13,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          13,
+          26
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "backhaul-parent-handover",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "backhaul_rf": "geometry",
+    "duration_ms": 24000,
+    "tick_ms": 1000,
+    "pause_at_ms": [
+      12000
+    ],
+    "seed": 1914,
+    "nodes": [
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              28,
+              8
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              28,
+              8
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              28,
+              28
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              28,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              28,
+              8
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              28,
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              29,
+              8
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              29,
+              8
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              29,
+              28
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              29,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              29,
+              8
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              29,
+              8
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "concrete",
+      "isolation"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Backhaul · Parent Handover",
+      "rf": "Extender_3 moves from the upper relay region near extender_1 to the lower region near extender_2, then returns. sta_static_09 follows one metre beside it, keeping their local fronthaul strong while upstream opportunities change.",
+      "optimizer": "Observe native selection of the stronger upstream parent and any hold, reconnect or failure to adapt. The client optimizer may still steer clients, but it never supplies an extender parent in this room.",
+      "watch": "At the 12 s pause compare both relay link budgets, actual extender BSSID, the parent line in Network Topology and gateway traffic. After resuming, verify return RF and native reachability at 24 s. Strong client signal alone is insufficient.",
+      "limits": "Removing the RF freeze does not guarantee a parent change. Native hysteresis or absent native optimization may retain the original parent. Record this distinctly from a rendering or medium error; do not credit external BSSID assistance as native behavior."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/backhaul-parent-handover.world.json",
+    "layout": "backhaul-courtyard",
+    "mobility": "backhaul-parent-handover",
+    "layout_sha256": "cb9fe38477e3d55ddb27ce7f3caacebc329f219197870a23eed68bcf497e0428",
+    "mobility_sha256": "865477c6f118a22c2623100f471de2f75d433e2e8aeb4da68622ec7bee24a76f",
+    "golden_sha256": "c508b67a94b021db6e4d59f9936fd29fe1885d1ccce8fb9939c80d39fc2bfffb"
+  },
+  "library": {
+    "category": "reference",
+    "order": 25,
+    "highlights": [
+      "2 walls",
+      "2 moving",
+      "checkpoints",
+      "geometry backhaul"
+    ]
+  }
+}

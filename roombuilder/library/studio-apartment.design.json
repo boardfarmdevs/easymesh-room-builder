@@ -1,0 +1,315 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "studio-apartment",
+  "title": "Studio apartment",
+  "description": "A 63 m² studio with a drywall bathroom. The gateway and one extender serve it; the lab's other three extenders are parked (always absent) so the room still loads in the lab.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "studio-apartment",
+    "tags": [
+      "home",
+      "parked-extenders",
+      "small"
+    ],
+    "space": {
+      "width_m": 9,
+      "height_m": 7
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "bath-s",
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          3.0,
+          0.0
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "bath-e",
+        "start": [
+          3.0,
+          0.0
+        ],
+        "end": [
+          3.0,
+          2.6
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "bath-n-a",
+        "start": [
+          0.0,
+          2.6
+        ],
+        "end": [
+          1.8,
+          2.6
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "bath-n-b",
+        "start": [
+          2.6,
+          2.6
+        ],
+        "end": [
+          3.0,
+          2.6
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "bath-w",
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          0.0,
+          2.6
+        ],
+        "loss_db": 3
+      },
+      {
+        "name": "kitchen-counter",
+        "start": [
+          3.0,
+          4.8
+        ],
+        "end": [
+          6.0,
+          4.8
+        ],
+        "loss_db": 6
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          1.2,
+          5.8
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          7.6,
+          1.2
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.5,
+          6.5
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.5,
+          6.0
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.0,
+          6.5
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          4.5,
+          6.2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          7.8,
+          5.2
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          1.5,
+          1.2
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          5.5,
+          2.2
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          6.8,
+          3.6
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          2.2,
+          3.8
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "studio-evening",
+    "tags": [
+      "mobile-1",
+      "parked"
+    ],
+    "duration_ms": 40000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "nodes": [
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.5,
+          6.5
+        ],
+        "presence": []
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.5,
+          6.0
+        ],
+        "presence": []
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          8.0,
+          6.5
+        ],
+        "presence": []
+      },
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              4.5,
+              3.5
+            ]
+          },
+          {
+            "time_ms": 2900,
+            "position": [
+              2.2,
+              3.2
+            ]
+          },
+          {
+            "time_ms": 5200,
+            "position": [
+              2.2,
+              1.4
+            ]
+          },
+          {
+            "time_ms": 13200,
+            "position": [
+              2.2,
+              1.4
+            ]
+          },
+          {
+            "time_ms": 15500,
+            "position": [
+              2.2,
+              3.2
+            ]
+          },
+          {
+            "time_ms": 21600,
+            "position": [
+              6.5,
+              5.5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "drywall",
+      "wood"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Studio apartment",
+      "rf": "Short distances keep most links strong; the bathroom's 3 dB drywall and the 6 dB kitchen counter are the only obstructions. Parked extenders are RF-absent for the whole script.",
+      "optimizer": "With two strong APs close together, steering should be rare; a laptop that visits the bathroom may stay on its first AP.",
+      "watch": "No churn between gateway and extender_1 while the walker dwells in the bathroom.",
+      "limits": "Parking uses an empty presence list: the lab keeps those containers running with their fronthaul off."
+    }
+  },
+  "library": {
+    "category": "homes",
+    "order": 1,
+    "highlights": [
+      "6 walls",
+      "1 moving",
+      "presence changes"
+    ]
+  }
+}

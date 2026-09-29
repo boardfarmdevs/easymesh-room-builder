@@ -1,0 +1,246 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "large-room-extender-evacuation",
+  "title": "Large Room · Extender Evacuation",
+  "description": "Twelve clients stay fixed in a 40×40 m room. Eight initially cluster near extender_1. During 4–18 s that extender moves from (8,8) to (36,32), weakening client-serving links without disabling the AP.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "large-room-client-cluster",
+    "tags": [
+      "large-room",
+      "five-agent",
+      "open-plan",
+      "extender-evacuation"
+    ],
+    "space": {
+      "width_m": 40,
+      "height_m": 40
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 50,
+        "6": 47,
+        "2.4": 54
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          20
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          4
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          36
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          36
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          8,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          8
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          9,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          10,
+          8
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          8,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          10,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          11,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          9,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          37,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          4,
+          37
+        ]
+      },
+      {
+        "role": "sta_mobile_01",
+        "kind": "station",
+        "position": [
+          37,
+          37
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "kind": "station",
+        "position": [
+          39,
+          39
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "extender-evacuation",
+    "tags": [
+      "quick-demo",
+      "moving-extender",
+      "eight-client-evacuation",
+      "clients-12"
+    ],
+    "duration_ms": 20000,
+    "tick_ms": 1000,
+    "seed": 1714,
+    "nodes": [
+      {
+        "role": "extender_1",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              8,
+              8
+            ]
+          },
+          {
+            "time_ms": 4000,
+            "position": [
+              8,
+              8
+            ]
+          },
+          {
+            "time_ms": 18000,
+            "position": [
+              36,
+              32
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Large Room · Extender Evacuation",
+      "rf": "Twelve clients stay fixed in a 40×40 m room. Eight initially cluster near extender_1. During 4–18 s that extender moves from (8,8) to (36,32), weakening client-serving links without disabling the AP.",
+      "optimizer": "Initially serve the cluster through extender_1; after the move, steer the eight cluster clients toward Agent-1 where the RF is now stronger. Independent decisions should not be mistaken for one simultaneous bulk roam.",
+      "watch": "Compare each cluster client’s candidate and actual serving link, per-client reason and verified BSSID. At 20 s leave the lab running to settle; confirm all twelve clients remain present and check traffic after evacuation.",
+      "limits": "This is RF-driven evacuation, not an extender power failure. Protected startup backhaul can retain its parent despite the new geometry; a branch through another extender is not required in that mode."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/large-room-extender-evacuation.world.json",
+    "layout": "large-room-client-cluster",
+    "mobility": "extender-evacuation",
+    "layout_sha256": "51ea65421336f332d47ade5e8914b03d07935bc7d7cb8461fd976f3eb9ab8d4c",
+    "mobility_sha256": "b6ac8ae4986f84d888183fc6f693dd1ba7a67f4e689b536a69a15e70b8cc455c",
+    "golden_sha256": "c38c3518899ca9f459c5fd1f8e597555ebe01a8dc3505469829c8c288b168d43"
+  },
+  "library": {
+    "category": "reference",
+    "order": 13,
+    "highlights": [
+      "1 moving"
+    ]
+  }
+}

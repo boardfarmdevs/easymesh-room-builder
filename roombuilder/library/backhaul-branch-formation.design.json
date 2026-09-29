@@ -1,0 +1,443 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "backhaul-branch-formation",
+  "title": "Backhaul · Branch Formation",
+  "description": "Extender roles 3 and 4 move to the far courtyard corners with two nearby clients. A branch-divider wall separates the moving extenders while preserving the original weak gateway paths. At the checkpoint, 5 GHz SNR is 13 dB to the intended relay, 0 dB to the other moving extender and -7 dB to the gateway: a 13 dB advantage, exceeding native 6 dB hysteresis without forcing parents.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "backhaul-branches",
+    "tags": [
+      "backhaul",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "space": {
+      "width_m": 64,
+      "height_m": 36
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "5": 48,
+        "6": 45,
+        "2.4": 52
+      },
+      "path_loss_exponent": 2.8,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "courtyard-partition",
+        "start": [
+          30,
+          11
+        ],
+        "end": [
+          30,
+          25
+        ],
+        "loss_db": 12
+      },
+      {
+        "name": "isolation-wall",
+        "start": [
+          48,
+          0
+        ],
+        "end": [
+          48,
+          36
+        ],
+        "loss_db": 70
+      },
+      {
+        "name": "branch-divider",
+        "start": [
+          31,
+          18
+        ],
+        "end": [
+          46,
+          18
+        ],
+        "loss_db": 12
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          8,
+          18
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          22,
+          28
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          10
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          12,
+          26
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          7,
+          17
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          9,
+          19
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          21,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          23,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          21,
+          27
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          23,
+          29
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          18
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          8,
+          20
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          13,
+          10
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          13,
+          26
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "backhaul-branch-formation",
+    "tags": [
+      "backhaul",
+      "geometry",
+      "native-parent-selection",
+      "quick-demo"
+    ],
+    "backhaul_rf": "geometry",
+    "duration_ms": 24000,
+    "tick_ms": 1000,
+    "pause_at_ms": [
+      12000
+    ],
+    "seed": 1914,
+    "nodes": [
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              40,
+              8
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              40,
+              8
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              12,
+              10
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              12,
+              10
+            ]
+          }
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              40,
+              28
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              40,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              12,
+              26
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              12,
+              26
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              41,
+              8
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              41,
+              8
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              13,
+              10
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              13,
+              10
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 10000,
+            "position": [
+              41,
+              28
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              41,
+              28
+            ]
+          },
+          {
+            "time_ms": 22000,
+            "position": [
+              13,
+              26
+            ]
+          },
+          {
+            "time_ms": 24000,
+            "position": [
+              13,
+              26
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "concrete",
+      "isolation",
+      "concrete"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Backhaul · Branch Formation",
+      "rf": "Extender roles 3 and 4 move to the far courtyard corners with two nearby clients. A branch-divider wall separates the moving extenders while preserving the original weak gateway paths. At the checkpoint, 5 GHz SNR is 13 dB to the intended relay, 0 dB to the other moving extender and -7 dB to the gateway: a 13 dB advantage, exceeding native 6 dB hysteresis without forcing parents.",
+      "optimizer": "Client steering remains the external lab policy; backhaul parent selection belongs to native software. At 12 s inspect whether roles 3 and 4 use roles 1 and 2 respectively. No target BSSID or parent is forced.",
+      "watch": "Compare applied bidirectional 5 GHz SNR, physical uplink BSSID, controller parents and gateway reachability at the 12 s pause. Resume to return by 22 s, finishing at 24 s. Report native reparenting or failure separately from correct RF application.",
+      "limits": "A stronger relay is an opportunity, not proof that native parent selection is implemented or converges. A persistent star or lost uplink is a recorded result. This room does not silently restore strong root links or run the assisted parent planner."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/backhaul-branch-formation.world.json",
+    "layout": "backhaul-branches",
+    "mobility": "backhaul-branch-formation",
+    "layout_sha256": "3664991d1232f210d8b72021fee2acce5c1d540ef5da71ed689ae9765e154775",
+    "mobility_sha256": "99d16a21b4b118fed1ecefa429510a8af79b54ae5fbf3d697abc192ba19cb33b",
+    "golden_sha256": "1d88d10337d3a756fb3c23b3bb9dc63375fe4bcf9ac707f038ca3bd97500b54a"
+  },
+  "library": {
+    "category": "reference",
+    "order": 24,
+    "highlights": [
+      "3 walls",
+      "4 moving",
+      "checkpoints",
+      "geometry backhaul"
+    ]
+  }
+}

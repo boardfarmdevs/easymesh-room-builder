@@ -1,0 +1,188 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "open-plan-template",
+  "title": "Open plan · lab template",
+  "description": "An empty 20 × 14 m floor with the lab's five agents placed by the optimiser and ten static clients. Start here for a new lab room.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "open-plan-template",
+    "tags": [
+      "five-agent",
+      "open-plan",
+      "static-10",
+      "template"
+    ],
+    "space": {
+      "width_m": 20,
+      "height_m": 14
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          10,
+          7
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          5.05,
+          10.65
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          16.35,
+          2.3
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          17.2,
+          9.6
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          2.8,
+          2.6
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          6,
+          11
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          9,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          13,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          15,
+          5
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          18,
+          9
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          4,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          11,
+          9.5
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          17,
+          1.5
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          1.5,
+          12.5
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "stationary",
+    "tags": [
+      "stationary"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 2000,
+    "seed": 1901,
+    "nodes": []
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Open plan · lab template",
+      "rf": "Free-space-like open floor with the lab's default propagation (54/50/47 dB at 1 m, exponent 2.2). No walls: every link is set by distance alone.",
+      "optimizer": "Clients sit where the strongest AP is obvious; a policy should settle quickly and then stay quiet. Use this as a control before adding walls.",
+      "watch": "Every static client should keep its first association; no ping-pong.",
+      "limits": "A template: add walls, movement and presence to turn it into an experiment."
+    }
+  },
+  "library": {
+    "category": "starter",
+    "order": 1,
+    "highlights": []
+  }
+}

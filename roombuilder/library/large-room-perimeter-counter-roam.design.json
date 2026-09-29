@@ -1,0 +1,292 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "large-room-perimeter-counter-roam",
+  "title": "Large Room · Perimeter Counter-Roam",
+  "description": "Two clients travel in opposite directions around the outer lanes of a 40×40 m room; ten clients stay fixed. Their changing distances favor different extender regions on each leg.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "large-room-five-agent",
+    "tags": [
+      "large-room",
+      "five-agent",
+      "open-plan",
+      "static-10"
+    ],
+    "space": {
+      "width_m": 40,
+      "height_m": 40
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          20,
+          20
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          4
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          4
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          4,
+          36
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          36,
+          36
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          6,
+          5
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          8,
+          6
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          16,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          24,
+          4
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          38,
+          6
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          6,
+          38
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          10,
+          34
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          20,
+          36
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          30,
+          32
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          39,
+          39
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "perimeter-counter-roam",
+    "tags": [
+      "quick-demo",
+      "perimeter",
+      "opposite-directions",
+      "roaming-checkpoints",
+      "mobile-2",
+      "clients-12"
+    ],
+    "duration_ms": 60000,
+    "tick_ms": 1000,
+    "pause_at_ms": [
+      14000,
+      28000,
+      42000
+    ],
+    "seed": 1713,
+    "nodes": [
+      {
+        "role": "sta_mobile_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              2,
+              2
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              38,
+              2
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              38,
+              38
+            ]
+          },
+          {
+            "time_ms": 42000,
+            "position": [
+              2,
+              38
+            ]
+          },
+          {
+            "time_ms": 56000,
+            "position": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "role": "sta_mobile_02",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "time_ms": 14000,
+            "position": [
+              3,
+              37
+            ]
+          },
+          {
+            "time_ms": 28000,
+            "position": [
+              37,
+              37
+            ]
+          },
+          {
+            "time_ms": 42000,
+            "position": [
+              37,
+              3
+            ]
+          },
+          {
+            "time_ms": 56000,
+            "position": [
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Large Room · Perimeter Counter-Roam",
+      "rf": "Two clients travel in opposite directions around the outer lanes of a 40×40 m room; ten clients stay fixed. Their changing distances favor different extender regions on each leg.",
+      "optimizer": "Follow independent eligible AP opportunities along role paths 1→2→4→3→1 and 1→3→4→2→1. Verify meaningful gains rather than chasing every small instantaneous difference.",
+      "watch": "At 14, 28 and 42 s wait for fresh measurements and verified serving ownership in both views before pressing Play again. Both walkers return by 56 s and finish at 60 s. Probe each walker separately when comparing continuity.",
+      "limits": "Extender role numbers may differ from display labels. Pauses do not assign an AP or automatically prove convergence; total wall-clock time includes all checkpoint waits."
+    }
+  },
+  "source": {
+    "kind": "reference",
+    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
+    "path": "gen/wmediumd/configurator/worlds/golden/large-room-perimeter-counter-roam.world.json",
+    "layout": "large-room-five-agent",
+    "mobility": "perimeter-counter-roam",
+    "layout_sha256": "828813677b68df4d536f80a5b793ba445ec7418636e9c9b7fef3b85953b406b5",
+    "mobility_sha256": "45ea094a4c62f3c38ef138f8cd8829e37d4952feb6b4a54bf72921e4a78274db",
+    "golden_sha256": "b56d49fcde817ad67e40b1e3a2c2015f97ab49179deda50ce1f6a3867826f32c"
+  },
+  "library": {
+    "category": "reference",
+    "order": 12,
+    "highlights": [
+      "2 moving",
+      "checkpoints"
+    ]
+  }
+}

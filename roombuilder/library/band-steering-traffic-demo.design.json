@@ -1,0 +1,374 @@
+{
+  "schema": "roombuilder.design.v1",
+  "id": "band-steering-traffic-demo",
+  "title": "Band steering + traffic demo",
+  "description": "Two profiled clients and a bounded UDP experiment: a dual-band laptop walks away and back while a 2.4 GHz-only camera stays pinned, with checkpoints for inspection.",
+  "profile": "rdk-lab",
+  "revision": 0,
+  "generator": "roombuilder 1.0.0",
+  "layout": {
+    "schema": "wmdcfg.world-layout.v1",
+    "name": "band-steering-traffic-demo",
+    "tags": [
+      "band-steering",
+      "checkpoints",
+      "traffic"
+    ],
+    "space": {
+      "width_m": 30,
+      "height_m": 16
+    },
+    "propagation": {
+      "reference_distance_m": 1,
+      "reference_snr_db_by_band": {
+        "2.4": 54,
+        "5": 50,
+        "6": 47
+      },
+      "path_loss_exponent": 2.2,
+      "shadowing_stddev_db": 0,
+      "minimum_snr_db": -20,
+      "maximum_snr_db": 60
+    },
+    "walls": [
+      {
+        "name": "partition-a",
+        "start": [
+          15.0,
+          0.0
+        ],
+        "end": [
+          15.0,
+          7.4
+        ],
+        "loss_db": 8
+      },
+      {
+        "name": "partition-b",
+        "start": [
+          15.0,
+          8.6
+        ],
+        "end": [
+          15.0,
+          16.0
+        ],
+        "loss_db": 8
+      }
+    ],
+    "nodes": [
+      {
+        "role": "gateway",
+        "kind": "fronthaul_ap",
+        "position": [
+          5,
+          8
+        ]
+      },
+      {
+        "role": "extender_1",
+        "kind": "fronthaul_ap",
+        "position": [
+          25,
+          8
+        ]
+      },
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          29,
+          1
+        ]
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          29,
+          15
+        ]
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          1,
+          15
+        ]
+      },
+      {
+        "role": "sta_static_01",
+        "kind": "station",
+        "position": [
+          5.6,
+          8.4
+        ]
+      },
+      {
+        "role": "sta_static_02",
+        "kind": "station",
+        "position": [
+          6,
+          7
+        ]
+      },
+      {
+        "role": "sta_static_03",
+        "kind": "station",
+        "position": [
+          3,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_04",
+        "kind": "station",
+        "position": [
+          9,
+          13
+        ]
+      },
+      {
+        "role": "sta_static_05",
+        "kind": "station",
+        "position": [
+          22,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_06",
+        "kind": "station",
+        "position": [
+          27,
+          13
+        ]
+      },
+      {
+        "role": "sta_static_07",
+        "kind": "station",
+        "position": [
+          11,
+          2
+        ]
+      },
+      {
+        "role": "sta_static_08",
+        "kind": "station",
+        "position": [
+          20,
+          12
+        ]
+      },
+      {
+        "role": "sta_static_09",
+        "kind": "station",
+        "position": [
+          26,
+          3
+        ]
+      },
+      {
+        "role": "sta_static_10",
+        "kind": "station",
+        "position": [
+          8,
+          10
+        ]
+      }
+    ]
+  },
+  "mobility": {
+    "schema": "wmdcfg.mobility.v1",
+    "name": "band-and-traffic",
+    "tags": [
+      "band-steering",
+      "checkpoints",
+      "traffic"
+    ],
+    "duration_ms": 30000,
+    "tick_ms": 1000,
+    "seed": 1901,
+    "pause_at_ms": [
+      12000,
+      26000
+    ],
+    "band_steering": {
+      "sta_static_01": {
+        "allowed_bands": [
+          "2.4",
+          "5",
+          "6"
+        ],
+        "initial_band": "5"
+      },
+      "sta_static_02": {
+        "allowed_bands": [
+          "2.4"
+        ],
+        "initial_band": "2.4"
+      }
+    },
+    "band_steering_expectations": [
+      {
+        "time_ms": 0,
+        "roles": {
+          "sta_static_01": {
+            "band": "6",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 12000,
+        "roles": {
+          "sta_static_01": {
+            "band": "2.4",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      },
+      {
+        "time_ms": 30000,
+        "roles": {
+          "sta_static_01": {
+            "band": "6",
+            "ap": "gateway"
+          },
+          "sta_static_02": {
+            "band": "2.4",
+            "ap": "gateway"
+          }
+        }
+      }
+    ],
+    "traffic_experiment": {
+      "schema": "easymesh.room-traffic.v1",
+      "phases": [
+        {
+          "role": "sta_static_01",
+          "start_ms": 3000,
+          "end_ms": 10000,
+          "mode": "udp",
+          "offered_mbps": 2,
+          "payload_bytes": 1200
+        },
+        {
+          "role": "sta_static_01",
+          "start_ms": 17000,
+          "end_ms": 24000,
+          "mode": "udp",
+          "offered_mbps": 6,
+          "payload_bytes": 1200
+        }
+      ]
+    },
+    "nodes": [
+      {
+        "role": "extender_2",
+        "kind": "fronthaul_ap",
+        "position": [
+          29,
+          1
+        ],
+        "presence": []
+      },
+      {
+        "role": "extender_3",
+        "kind": "fronthaul_ap",
+        "position": [
+          29,
+          15
+        ],
+        "presence": []
+      },
+      {
+        "role": "extender_4",
+        "kind": "fronthaul_ap",
+        "position": [
+          1,
+          15
+        ],
+        "presence": []
+      },
+      {
+        "role": "sta_static_01",
+        "path": [
+          {
+            "time_ms": 0,
+            "position": [
+              5.6,
+              8.4
+            ]
+          },
+          {
+            "time_ms": 2000,
+            "position": [
+              5.6,
+              8.4
+            ]
+          },
+          {
+            "time_ms": 11000,
+            "position": [
+              14,
+              8.1
+            ]
+          },
+          {
+            "time_ms": 16000,
+            "position": [
+              14,
+              8.1
+            ]
+          },
+          {
+            "time_ms": 25000,
+            "position": [
+              5.6,
+              8.4
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "builder": {
+    "wall_materials": [
+      "brick",
+      "brick"
+    ],
+    "notes": "",
+    "view": {
+      "band": "5"
+    },
+    "guide": {
+      "title": "Band steering + traffic demo",
+      "rf": "Close to the gateway all three bands are strong; at the partition the 6 and 5 GHz links weaken first. Only gateway and extender_1 transmit.",
+      "optimizer": "Upgrade to 6 GHz near the gateway, fall back to 2.4 GHz at the far point, upgrade again on return. The 2.4 GHz-only camera must never be steered off 2.4.",
+      "watch": "At the 12 s and 26 s checkpoints compare native band/BSSID with the signed expectations; the traffic inspector shows 2 then 6 Mbps offered.",
+      "limits": "Expectations are the author's intent, checked by the room guide, not enforced by RF."
+    }
+  },
+  "library": {
+    "category": "stress",
+    "order": 5,
+    "highlights": [
+      "2 walls",
+      "1 moving",
+      "presence changes",
+      "checkpoints",
+      "band steering",
+      "traffic"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roombuilder"
+dynamic = ["version"]
+description = "Visual designer for wmdcfg Golden World rooms of the EasyMesh optimizer lab"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+room-builder = "roombuilder.cli:main"
+
+[tool.setuptools]
+packages = ["roombuilder"]
+
+[tool.setuptools.dynamic]
+version = {attr = "roombuilder.__version__"}
+
+[tool.setuptools.package-data]
+roombuilder = ["library/*.json", "static/*.html", "static/css/*", "static/js/*", "static/vendor/*"]

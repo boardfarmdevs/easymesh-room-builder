@@ -1,0 +1,7 @@
+#!/bin/sh
+# EasyMesh room builder launcher: `./room-builder serve`, `./room-builder verify ROOM`, ...
+here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ "$#" -eq 0 ]; then set -- serve; fi
+# Started with sudo (port 80, see --user): don't leave root-owned bytecode in the project.
+if [ "$(id -u)" = 0 ]; then export PYTHONDONTWRITEBYTECODE=1; fi
+PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m roombuilder "$@"
