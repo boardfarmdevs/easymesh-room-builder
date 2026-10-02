@@ -445,8 +445,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/home-a-band-walk-small.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/home-a-band-walk-small.world.json",
     "layout": "home-five-agent",
     "mobility": "band-walk-small",
     "layout_sha256": "ffce9949082eb4cfa9d06e9207724ae18ad832f46797714b3449c132236d56f2",

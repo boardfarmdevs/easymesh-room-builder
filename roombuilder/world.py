@@ -1,6 +1,6 @@
 """Golden World layout/mobility compiler.
 
-A faithful port of ``wmdcfg/world.py`` (upstream a796f3a): validation messages, merge order,
+A faithful port of ``wmdcfg/world.py`` (the configurator of 28 September 2026): validation messages, merge order,
 hashing and the compiled ``wmdcfg.world-plan.v1`` are identical, so a room
 built here produces the same ``golden_sha256`` as the reference compiler.
 """

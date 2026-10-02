@@ -16,7 +16,7 @@ subject to a *backhaul tree*: every placed extender must reach the gateway
 or a wired extender through wireless AP-to-AP hops whose weaker direction is
 at least ``min_backhaul_snr_db`` on the backhaul band. A wired extender is
 on the controller's LAN, so it is a root of the tree and a possible Wi-Fi
-parent (the compiler gives it AP-to-AP links since upstream a796f3a); it
+parent (the compiler gives it AP-to-AP links since the configurator of 28 September 2026); it
 never needs a Wi-Fi backhaul itself. OpenSync pods neither need nor provide one.
 
 Search: greedy selection over a candidate grid, candidate-swap improvement,

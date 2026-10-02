@@ -604,8 +604,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/fifty-client-counter-roam.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/fifty-client-counter-roam.world.json",
     "layout": "large-room-fifty-clients",
     "mobility": "fifty-client-counter-roam",
     "layout_sha256": "7a8820e42924f1512ff8beafffb6ed3a5e5403825d6e49ad02076511e27a0795",

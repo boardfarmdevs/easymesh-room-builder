@@ -72,8 +72,12 @@ def load_reference(path: str | None = None):
     if not path:
         return None
     root = Path(path)
-    if (root / "gen/wmediumd/configurator/wmdcfg").is_dir():
-        root = root / "gen/wmediumd/configurator"
+    # an easymesh-medium checkout, a lab's checkout (the medium at gen/medium or medium),
+    # or the configurator directory itself
+    for inner in ("configurator", "gen/medium/configurator", "medium/configurator"):
+        if (root / inner / "wmdcfg").is_dir():
+            root = root / inner
+            break
     if not (root / "wmdcfg" / "world.py").is_file():
         raise ScenarioError(f"{path} is not a wmdcfg configurator directory")
     if str(root) not in sys.path:
@@ -185,7 +189,7 @@ def _optional(plan, key, function):
 
 def _check_links(plan: dict) -> str:
     roles = plan["roles"]
-    # Every directed AP/client and AP/AP pair, wired APs included (room_demo/worlds.py, upstream a796f3a).
+    # Every directed AP/client and AP/AP pair, wired APs included (the room service's worlds.py, 28 September 2026).
     expected = {
         (source, destination) for source in roles for destination in roles
         if source != destination and "fronthaul_ap" in (roles[source], roles[destination])

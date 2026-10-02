@@ -273,8 +273,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/large-room-perimeter-counter-roam.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/large-room-perimeter-counter-roam.world.json",
     "layout": "large-room-five-agent",
     "mobility": "perimeter-counter-roam",
     "layout_sha256": "828813677b68df4d536f80a5b793ba445ec7418636e9c9b7fef3b85953b406b5",

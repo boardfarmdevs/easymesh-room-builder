@@ -228,8 +228,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/large-room-extender-evacuation.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/large-room-extender-evacuation.world.json",
     "layout": "large-room-client-cluster",
     "mobility": "extender-evacuation",
     "layout_sha256": "51ea65421336f332d47ade5e8914b03d07935bc7d7cb8461fd976f3eb9ab8d4c",

@@ -318,8 +318,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds-wired/golden/home-a-wired-extender-loss-recovery.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds-wired/golden/home-a-wired-extender-loss-recovery.world.json",
     "layout": "home-five-agent-wired",
     "mobility": "wired-extender-loss-recovery",
     "layout_sha256": "f5c2635823c73607755700117c410f0262ac83cf1bc640d4cae6cd79df52c2be",

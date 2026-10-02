@@ -72,7 +72,7 @@ world plan (wmdcfg.world-plan.v1)  positions + presence + directed SNR per band 
                         │ world-export --band 2.4|5|6|all
                         ▼
 .wmd phase scenario  →  bind / compile / run on the lab's atomic wmediumd control socket</code></pre>
-<p>The builder edits those two documents directly — verbatim, with no extra fields — and keeps builder-only metadata (wall materials, notes, the room guide text) beside them in a <code>roombuilder.design.v1</code> file. Its compiler is a faithful port of <code>wmdcfg/world.py</code> and <code>geometry.py</code>; the test suite proves that all 50 library rooms compile <strong>byte-identically</strong> with the reference configurator and that every reference golden world is reproduced, in step with upstream commit <code>a796f3a</code>.</p>
+<p>The builder edits those two documents directly — verbatim, with no extra fields — and keeps builder-only metadata (wall materials, notes, the room guide text) beside them in a <code>roombuilder.design.v1</code> file. Its compiler is a faithful port of <code>wmdcfg/world.py</code> and <code>geometry.py</code>; the test suite proves that all 50 library rooms compile <strong>byte-identically</strong> with the reference configurator and that every reference golden world is reproduced, in step with the configurator of 28 September 2026.</p>
 <div class="note">The builder never talks to a live lab. What it shows is the configurator's RF model (the same numbers the lab will apply); association, steering and backhaul parents are decided by the real EasyMesh software once the room is loaded.</div>
 </section>
 
@@ -299,7 +299,7 @@ world plan (wmdcfg.world-plan.v1)  positions + presence + directed SNR per band 
 <section id="lab"><h2>Taking a room into the lab</h2>
 <ol>
 <li>Export the <strong>Lab bundle</strong> and unzip it.</li>
-<li>Copy <code>worlds/layouts/*.json</code>, <code>worlds/mobility/*.json</code> and <code>worlds/golden/*.world.json</code> into <code>gen/wmediumd/configurator/worlds/</code> of the reference repository.</li>
+<li>Copy <code>worlds/layouts/*.json</code>, <code>worlds/mobility/*.json</code> and <code>worlds/golden/*.world.json</code> into <code>configurator/worlds/</code> of easymesh-medium, where the labs' rooms live.</li>
 <li>Add the line from <code>build-goldens.emit</code> to <code>worlds/build-goldens.sh</code> and run <code>worlds/build-goldens.sh --check</code>: it recompiles the room from its sources and must find the same bytes.</li>
 <li>Optionally add <code>room-guide-entry.js</code> to the viewer's <code>room-guide.js</code> and the world ID to the viewer's list, then load it in the room like any golden world.</li>
 </ol>
@@ -321,7 +321,7 @@ world plan (wmdcfg.world-plan.v1)  positions + presence + directed SNR per band 
 </section>
 
 <section id="cli"><h2>Command line and API</h2>
-<pre><code>./room-builder serve [--port 8790] [--data designs/] [--reference /path/to/meta-cmf-bananapi-vcpe]
+<pre><code>./room-builder serve [--port 8790] [--data designs/] [--reference /path/to/easymesh-medium]
 ./room-builder verify ROOM [--profile rdk-lab] [--reference PATH] [--json]
 ./room-builder compile ROOM -o room.world.json [--pretty]
 ./room-builder export ROOM --format layout|mobility|world|wmd|bundle|svg|dxf|design [--band all] -o OUT
@@ -340,7 +340,7 @@ world plan (wmdcfg.world-plan.v1)  positions + presence + directed SNR per band 
 </section>
 </main>
 </div>
-<footer>EasyMesh room builder · compiles with the wmdcfg Golden World model of boardfarmdevs/meta-cmf-bananapi-vcpe.</footer>
+<footer>EasyMesh room builder · compiles with the wmdcfg Golden World model of boardfarmdevs/easymesh-medium.</footer>
 <script>
 (function () {
   const sections = [...document.querySelectorAll('main section')];

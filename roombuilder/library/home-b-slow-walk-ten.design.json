@@ -514,8 +514,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/home-b-slow-walk-ten.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/home-b-slow-walk-ten.world.json",
     "layout": "home-five-agent-shifted",
     "mobility": "slow-walk-ten",
     "layout_sha256": "466d0be674baedecc4b59d9634e5bd73abc7edaac18726bcf6c64b772f7bb187",

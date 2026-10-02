@@ -66,7 +66,7 @@ def _mobility():
 
 
 class ReferenceWorldTests(unittest.TestCase):
-    """Ported verbatim from gen/wmediumd/configurator/tests/test_world.py (upstream a796f3a)."""
+    """Ported verbatim from the configurator's tests/test_world.py (28 September 2026)."""
 
     def test_ap_expectations_name_a_station_on_an_ap_at_final_or_a_checkpoint(self):
         good = {**_mobility(), "pause_at_ms": [1_000],

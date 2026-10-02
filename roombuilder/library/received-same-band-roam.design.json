@@ -243,8 +243,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/received-same-band-roam.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/received-same-band-roam.world.json",
     "layout": "band-steering-lane",
     "mobility": "received-same-band-roam",
     "layout_sha256": "8720299946878332049125a44d7e1791cff99a2670f4f81ab5a92aa8fd8703d9",

@@ -313,8 +313,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/backhaul-isolation-recovery.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/backhaul-isolation-recovery.world.json",
     "layout": "backhaul-courtyard",
     "mobility": "backhaul-isolation-recovery",
     "layout_sha256": "cb9fe38477e3d55ddb27ce7f3caacebc329f219197870a23eed68bcf497e0428",

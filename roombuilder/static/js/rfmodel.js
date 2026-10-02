@@ -191,7 +191,7 @@ export function linksFor(scene, layout, role) {
 }
 
 // Strongest mesh peer for each Wi-Fi extender (the viewer's thin floor dashes).
-// A wired AP needs no Wi-Fi backhaul but can be the peer (upstream a796f3a).
+// A wired AP needs no Wi-Fi backhaul but can be the peer (the configurator of 28 September 2026).
 export function meshPeers(scene, layout, band) {
   const prop = propagationOf(layout), walls = layout.walls || [];
   const aps = scene.nodes.filter((n) => n.kind === 'fronthaul_ap' && n.present);

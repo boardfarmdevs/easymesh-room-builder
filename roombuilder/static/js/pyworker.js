@@ -18,8 +18,11 @@ async function download(path) {
 
 // A web filter that blocks or replaces a file makes Pyodide hang instead of fail,
 // so check the first bytes of each binary first (a block page is HTML, not wasm/zip).
+// The probe bypasses the HTTP cache: a cached 4-byte range response was handed to
+// Pyodide's own fetch of the same URL, whose wasm then failed to compile and the
+// page stayed on "Loading" (vcpe.dev, 1 Oct).
 async function checkStart(path, magic) {
-  const response = await fetch(new URL(path, import.meta.url), {headers: {Range: `bytes=0-${magic.length - 1}`}});
+  const response = await fetch(new URL(path, import.meta.url), {headers: {Range: `bytes=0-${magic.length - 1}`}, cache: 'no-store'});
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const head = new Uint8Array(await response.arrayBuffer());
   if (!magic.every((byte, i) => head[i] === byte)) {

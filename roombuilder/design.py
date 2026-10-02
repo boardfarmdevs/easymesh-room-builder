@@ -667,10 +667,13 @@ Exported by the EasyMesh room builder ({design.get('generator', 'roombuilder')})
 
 ## Install into the configurator tree
 
+The labs' rooms live in easymesh-medium (`configurator/worlds`); the labs take them at
+the medium commit they pin.
+
 ```sh
-cp worlds/layouts/{design['layout']['name']}.json   <repo>/gen/wmediumd/configurator/worlds/layouts/
-cp worlds/mobility/{design['mobility']['name']}.json <repo>/gen/wmediumd/configurator/worlds/mobility/
-cp worlds/golden/{wid}.world.json   <repo>/gen/wmediumd/configurator/worlds/golden/
+cp worlds/layouts/{design['layout']['name']}.json   <easymesh-medium>/configurator/worlds/layouts/
+cp worlds/mobility/{design['mobility']['name']}.json <easymesh-medium>/configurator/worlds/mobility/
+cp worlds/golden/{wid}.world.json   <easymesh-medium>/configurator/worlds/golden/
 # add this line to worlds/build-goldens.sh, then run it with --check:
 {build_goldens_line(design)}
 ```

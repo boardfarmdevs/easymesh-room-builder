@@ -1,7 +1,7 @@
 """Byte-for-byte parity with a checkout of the reference configurator.
 
-Set ROOMBUILDER_REFERENCE to the meta-cmf-bananapi-vcpe checkout (or its
-gen/wmediumd/configurator directory). Every library room is compiled and
+Set ROOMBUILDER_REFERENCE to an easymesh-medium checkout (or a lab checkout, or the
+configurator directory). Every library room is compiled and
 exported by both implementations and the outputs must be identical; the
 reference's own golden files must also be reproduced.
 """
@@ -37,10 +37,10 @@ class ReferenceParityTests(unittest.TestCase):
                     self.assertEqual(export_wmd(ours, band), self.ref["world"].export_wmd(theirs, band))
 
     def test_reference_goldens_are_reproduced(self):
-        """Every golden of every tree: standard, wired, pods and pods+wired rooms."""
+        """Every golden of every tree: the standard, wired and pods rooms."""
         root = Path(self.ref["root"])
         goldens = sorted(root.glob("worlds*/golden/*.world.json"))
-        self.assertGreater(len(goldens), 100)
+        self.assertGreater(len(goldens), 80)   # the standard, wired and pods rooms
         for golden in goldens:
             tree = golden.parent.parent
             with self.subTest(golden=f"{tree.name}/{golden.name}"):

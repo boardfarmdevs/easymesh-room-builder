@@ -422,8 +422,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/backhaul-branch-formation.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/backhaul-branch-formation.world.json",
     "layout": "backhaul-branches",
     "mobility": "backhaul-branch-formation",
     "layout_sha256": "3664991d1232f210d8b72021fee2acce5c1d540ef5da71ed689ae9765e154775",

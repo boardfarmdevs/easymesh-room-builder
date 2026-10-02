@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate the example room library in roombuilder/library.
 
-    python3 tools/build_library.py --reference /path/to/meta-cmf-bananapi-vcpe
+    python3 tools/build_library.py --reference /path/to/easymesh-medium
 
 * ``reference`` rooms: every Golden World of the reference configurator, with
   layout and mobility copied verbatim, the expected golden_sha256 and the
@@ -95,7 +95,7 @@ WIRED_GUIDES = {
 # ---------------------------------------------------------------------------
 
 def build_reference(reference: Path) -> list[dict]:
-    worlds = reference / "gen/wmediumd/configurator/worlds"
+    worlds = reference / "configurator/worlds"
     guide = json.loads((HERE / "data/reference-room-guide.json").read_text())
     rooms = []
     for order, world_id in enumerate(REFERENCE_ORDER):
@@ -109,8 +109,8 @@ def build_reference(reference: Path) -> list[dict]:
             description=entry.get("rf", ""),
             source={
                 "kind": "reference",
-                "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-                "path": f"gen/wmediumd/configurator/worlds/golden/{world_id}.world.json",
+                "project": "boardfarmdevs/easymesh-medium",
+                "path": f"configurator/worlds/golden/{world_id}.world.json",
                 "layout": golden["layout"], "mobility": golden["mobility"],
                 "layout_sha256": golden["layout_sha256"], "mobility_sha256": golden["mobility_sha256"],
                 "golden_sha256": golden["golden_sha256"],
@@ -122,7 +122,7 @@ def build_reference(reference: Path) -> list[dict]:
         compiled = compile_world(layout, mobility)
         assert compiled["golden_sha256"] == golden["golden_sha256"], world_id
         rooms.append(design)
-    wired_tree = reference / "gen/wmediumd/configurator/worlds-wired"
+    wired_tree = reference / "configurator/worlds-wired"
     for order, (layout_name, mobility_name, world_id) in enumerate(WIRED_ROOMS, len(REFERENCE_ORDER)):
         golden = load_json(wired_tree / "golden" / f"{world_id}.world.json")
         layout = load_json(wired_tree / "layouts" / f"{layout_name}-wired.json")
@@ -132,8 +132,8 @@ def build_reference(reference: Path) -> list[dict]:
             layout, mobility, design_id=world_id, title=guide["title"], description=guide["rf"],
             source={
                 "kind": "reference",
-                "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-                "path": f"gen/wmediumd/configurator/worlds-wired/golden/{world_id}.world.json",
+                "project": "boardfarmdevs/easymesh-medium",
+                "path": f"configurator/worlds-wired/golden/{world_id}.world.json",
                 "layout": golden["layout"], "mobility": golden["mobility"],
                 "layout_sha256": golden["layout_sha256"], "mobility_sha256": golden["mobility_sha256"],
                 "golden_sha256": golden["golden_sha256"],

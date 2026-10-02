@@ -275,8 +275,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/home-a-disappear-reappear.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/home-a-disappear-reappear.world.json",
     "layout": "home-five-agent",
     "mobility": "disappear-reappear",
     "layout_sha256": "ffce9949082eb4cfa9d06e9207724ae18ad832f46797714b3449c132236d56f2",

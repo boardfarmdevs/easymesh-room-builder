@@ -8,5 +8,5 @@ mesh agents, clients and movement scenarios that compile to exactly the same
 __version__ = "1.0.0"
 
 # The configurator revision whose semantics the ported modules reproduce.
-REFERENCE_PROJECT = "boardfarmdevs/meta-cmf-bananapi-vcpe"
-REFERENCE_PATH = "gen/wmediumd/configurator"
+REFERENCE_PROJECT = "boardfarmdevs/easymesh-medium"
+REFERENCE_PATH = "configurator"

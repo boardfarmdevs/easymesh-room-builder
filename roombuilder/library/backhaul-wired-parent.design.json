@@ -336,8 +336,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds-wired/golden/backhaul-wired-parent.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds-wired/golden/backhaul-wired-parent.world.json",
     "layout": "backhaul-branches-wired",
     "mobility": "backhaul-wired-parent",
     "layout_sha256": "67bbb5c1e0017c91ec0422529c8bd49a4e39268863e25c80e0cd36dd41f3de0a",

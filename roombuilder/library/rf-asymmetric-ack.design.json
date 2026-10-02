@@ -214,8 +214,8 @@
   },
   "source": {
     "kind": "reference",
-    "project": "boardfarmdevs/meta-cmf-bananapi-vcpe",
-    "path": "gen/wmediumd/configurator/worlds/golden/rf-asymmetric-ack.world.json",
+    "project": "boardfarmdevs/easymesh-medium",
+    "path": "configurator/worlds/golden/rf-asymmetric-ack.world.json",
     "layout": "load-comparison-lane",
     "mobility": "rf-asymmetric-ack",
     "layout_sha256": "687b95a632732687f9dbf9a6cffa03c78c811ea9a0f9da4844e41a0fc8c1fea0",
