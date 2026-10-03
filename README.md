@@ -63,7 +63,8 @@ runs the same Python in the browser.
 - **Checking**: live findings with tips, and a verification suite that runs
   the room through the configurator's functions, the live room's admission
   rules and RF sanity checks — optionally with byte parity against a
-  reference checkout.
+  reference checkout. CI checks that parity on every push, against the
+  medium commit the labs pin (from the umbrella's `manifest.json`).
 
 ## Components
 

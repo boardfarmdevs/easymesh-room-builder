@@ -27,7 +27,20 @@ jobs:
       - uses: actions/setup-node@v7      # the JS/Python RF model parity test runs under node
         with:
           node-version: "22"
-      - name: Unit tests
+      - name: The medium commit the labs pin (the umbrella's manifest)
+        id: medium
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/boardfarmdevs/easymesh-labs/main/manifest.json \
+            | python3 -c 'import json, sys; print("ref=" + next(p["commit"] for p in json.load(sys.stdin)["projects"] if p["name"] == "easymesh-medium"))' \
+            >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7      # the reference configurator for the byte-parity tests
+        with:
+          repository: boardfarmdevs/easymesh-medium
+          ref: ${{ steps.medium.outputs.ref }}
+          path: .reference/medium
+      - name: Unit tests, with byte parity against the medium the labs pin
+        env:
+          ROOMBUILDER_REFERENCE: ${{ github.workspace }}/.reference/medium
         run: python -m unittest discover -s tests
       - name: Build the static site (downloads the pinned Pyodide release)
         run: python -m roombuilder build-site --out _site
